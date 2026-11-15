@@ -81,7 +81,7 @@
   document.addEventListener('click', function (ev) {
     var el = ev.target && ev.target.closest ? ev.target.closest('a,button,[data-act],summary') : null;
     if (!el) return;
-    var label = (el.getAttribute('aria-label') || el.textContent || '').replace(/\s+/g, ' ').trim();
+    var label = (el.getAttribute('aria-label') || el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim();
     var act = el.getAttribute('data-act');
     add('натиснув', (label || '(без підпису)') + (act ? ' [' + act + ']' : ''));
   }, true);
