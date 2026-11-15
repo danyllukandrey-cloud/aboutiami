@@ -503,12 +503,17 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
     $(errId).hidden = ok;
     return ok;
   }
+  /* телефон шлемо як текст (апостроф попереду), щоб таблиця не з'їла перший нуль чи плюс */
+  function contactValue() {
+    var v = $('contact').value.trim();
+    return /^[+\d][\d\s()\-]*$/.test(v) ? "'" + v : v;
+  }
   function payload() {
     var f = framingObj();
     return {
       group: group,
       name: $('name').value.trim(),
-      contact: $('contact').value.trim(),
+      contact: contactValue(),
       interview: $('interview').checked ? 'Так' : 'Ні',
       comment: $('comment').value.trim(),
       framing: f ? f.label : '',
@@ -592,7 +597,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({ type: 'vote', amount: vote, group: group,
-            name: $('name').value.trim(), contact: $('contact').value.trim(), website: $('website').value })
+            name: $('name').value.trim(), contact: contactValue(), website: $('website').value })
         }).catch(function () {});
       }
     });
