@@ -39,7 +39,7 @@
     return (document.title || '').replace(/\s*·\s*AboutIAmI.*$/, '').trim().slice(0, 120);
   }
 
-  var queue = [], total = 0;
+  var queue = [], total = 0, lastNav = null;
   var page = pageName(), since = Date.now(), visible = true;
 
   function add(e, d, s) {
@@ -53,6 +53,7 @@
 
   function flush(leaving) {
     if (!queue.length) return;
+    if (lastNav) lastNav.d = heading();
     var body = JSON.stringify({ type: 'events', visitor: visitor, session: session, tag: tag, device: device, events: queue });
     queue = [];
     try {
@@ -73,7 +74,8 @@
     since = Date.now();
     var ev = add('перейшов у розділ', '');
     /* заголовок сторінки зʼявляється після перемальовування — дописуємо його в подію */
-    if (ev) setTimeout(function () { ev.d = heading(); }, 400);
+    lastNav = ev;
+    [400, 1500, 3000].forEach(function (ms) { setTimeout(function () { if (lastNav === ev) ev.d = heading(); }, ms); });
   });
 
   document.addEventListener('click', function (ev) {
