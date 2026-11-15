@@ -18,13 +18,36 @@
   try { tag = (new URLSearchParams(location.search).get('to') || '').slice(0, 60); } catch (e) {}
   var device = (window.innerWidth < 700 ? 'телефон' : 'комп’ютер') + ' ' + window.innerWidth + '×' + window.innerHeight;
 
+  var TABS = { entry: 'Вхід', terms: 'Угода', declaration: 'Декларація', plan: 'План', cards: 'Картки',
+               scheme: 'Схема', schema: 'Схема', analytics: 'Аналітика', resources: 'Ресурси', agent: 'Агент' };
+  /* код розділу з адреси → зрозуміла назва */
+  function pageName() {
+    var h = (location.hash || '').replace(/^#/, '');
+    var parts = h.split('/');
+    if (!h || parts[0] === 'main') return 'Головна';
+    if (parts[0] === 'home') return 'Макет сайту' + (parts[1] === 'idea' ? ': ідея' : parts[1] === 'parts' ? ': складові' : parts[1] ? ': ' + parts[1] : '');
+    if (parts[0] === 'demo') return 'Макет застосунку' + (parts[1] ? ': ' + (TABS[parts[1]] || parts[1]) : '') + (parts[2] ? ' / ' + parts[2] : '');
+    if (parts[0] === 'slides') return 'Презентація: слайд ' + (parts[1] || '1');
+    return h;
+  }
+  /* київський час, щоб не рахувати від Гринвіча */
+  function now() {
+    try { return new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' }); }
+    catch (e) { try { return new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kiev' }); } catch (e2) { return new Date().toISOString(); } }
+  }
+  function heading() {   // назва сторінки, яку ставить сама презентація, напр. «Схема · AboutIAmI»
+    return (document.title || '').replace(/\s*·\s*AboutIAmI.*$/, '').trim().slice(0, 120);
+  }
+
   var queue = [], total = 0;
-  var page = location.hash || '#', since = Date.now(), visible = true;
+  var page = pageName(), since = Date.now(), visible = true;
 
   function add(e, d, s) {
     if (total >= MAX_EVENTS) return;
     total++;
-    queue.push({ t: new Date().toISOString(), e: e, d: String(d || '').slice(0, 160), p: page, s: s == null ? '' : s });
+    var ev = { t: now(), e: e, d: String(d || '').slice(0, 160), p: page, s: s == null ? '' : s };
+    queue.push(ev);
+    return ev;
   }
   function secs() { return Math.round((Date.now() - since) / 1000); }
 
@@ -46,9 +69,11 @@
 
   window.addEventListener('hashchange', function () {
     add('був у розділі', '', secs());
-    page = location.hash || '#';
+    page = pageName();
     since = Date.now();
-    add('перейшов у розділ', '');
+    var ev = add('перейшов у розділ', '');
+    /* заголовок сторінки зʼявляється після перемальовування — дописуємо його в подію */
+    if (ev) setTimeout(function () { ev.d = heading(); }, 400);
   });
 
   document.addEventListener('click', function (ev) {
