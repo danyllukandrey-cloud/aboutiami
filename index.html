@@ -348,7 +348,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
     TERMS_URL: '',    // угода користувача
     PRIVACY_URL: '',  // політика конфіденційності
     REFUND_URL: '',   // повернення коштів
-    EMAIL: ''         // пошта для звʼязку
+    CONTACT: 'тел. 0939871491'   // контакт у підвалі
   };
 
   /* Мітка групи в посиланні: …/#friends або …/?g=friends */
@@ -601,18 +601,17 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
         }).catch(function () {});
       }
     });
-    $('legal-name').textContent = ' · ' + (CONFIG.LEGAL_NAME || '[НАЗВА ФОП]');
+    $('legal-name').textContent = CONFIG.LEGAL_NAME ? ' · ' + CONFIG.LEGAL_NAME : '';
     var links = [['Угода користувача', CONFIG.TERMS_URL], ['Політика конфіденційності', CONFIG.PRIVACY_URL], ['Повернення коштів', CONFIG.REFUND_URL]];
     var host = $('legal-links');
     links.forEach(function (l) {
-      var el;
-      if (l[1]) { el = document.createElement('a'); el.href = l[1]; el.target = '_blank'; el.rel = 'noopener'; }
-      else { el = document.createElement('span'); }
+      if (!l[1]) return;   // документа ще немає — не показуємо
+      var el = document.createElement('a'); el.href = l[1]; el.target = '_blank'; el.rel = 'noopener';
       el.textContent = l[0];
       host.appendChild(el);
     });
     var c = document.createElement('span');
-    c.textContent = 'Контакти: ' + (CONFIG.EMAIL || '[ПОШТА]');
+    c.textContent = 'Контакти: ' + CONFIG.CONTACT;
     host.appendChild(c);
   })();
 
