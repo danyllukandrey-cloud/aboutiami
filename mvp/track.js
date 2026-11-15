@@ -68,7 +68,11 @@
 
   add('відкрив', document.referrer ? 'звідки: ' + document.referrer : 'пряме посилання');
 
-  window.addEventListener('hashchange', function () {
+  var lastHash = location.hash;
+  /* презентація часом міняє адресу без події hashchange (напр. зі «Змісту»), тому ще й перевіряємо адресу двічі на секунду */
+  function onNav() {
+    if (location.hash === lastHash) return;
+    lastHash = location.hash;
     add('був у розділі', '', secs());
     page = pageName();
     since = Date.now();
@@ -76,7 +80,9 @@
     /* заголовок сторінки зʼявляється після перемальовування — дописуємо його в подію */
     lastNav = ev;
     [400, 1500, 3000].forEach(function (ms) { setTimeout(function () { if (lastNav === ev) ev.d = heading(); }, ms); });
-  });
+  }
+  window.addEventListener('hashchange', onNav);
+  setInterval(onNav, 500);
 
   document.addEventListener('click', function (ev) {
     var el = ev.target && ev.target.closest ? ev.target.closest('a,button,[data-act],summary') : null;
