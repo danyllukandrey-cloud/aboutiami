@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="AboutIAmI — сервіс роботи над собою з ШІ. Збери свій варіант за 3 хвилини.">
+<style>[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Збери свій AboutIAmI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Одна колонка кроків + липка картка «Твій варіант» праворуч; чорна смуга відправки внизу. Один світлий вигляд, як у першій версії лендінгу. */
+:root{
+  color-scheme:light;
+  --bg:#FFFFFF; --ink:#000000; --muted:#595959; --line:#DBDBDB; --line-strong:#8C8C8C;
+  --accent:#244BDB; --accent-ink:#1A37A3; --accent-soft:#EEF2FD; --band:#F5F7FD;
+  --danger:#C62828; --dark:#000000; --on-dark:#FFFFFF; --on-dark-muted:#D6D6D6; --dark-line:#595959;
+  --ok:#1E7B4A;
+  --font:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--font)}
+a{color:var(--accent)}a:hover{color:var(--accent-ink)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance}
+
+.top{border-bottom:1px solid var(--line)}
+.top .wrap{padding-block:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-weight:800;font-size:22px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+.top nav{display:flex;flex-wrap:wrap;align-items:center;gap:24px;font-size:15px;font-weight:600}
+.top nav a{color:var(--ink);text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 24px;border-radius:12px;border:0;background:var(--accent);color:#FFFFFF;font:700 16px/1.2 var(--font);text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--accent-ink);color:#FFFFFF}
+.btn.small{min-height:44px;padding:0 18px;border-radius:10px;font-size:15px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line-strong)}
+.btn.ghost:hover{background:var(--band);color:var(--ink)}
+.btn[disabled]{opacity:.55;cursor:default}
+
+.hero .wrap{padding-block:88px 72px;display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start}
+.hero-main{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.eyebrow{font-size:15px;font-weight:600;color:var(--accent)}
+.hero h1{font-size:clamp(40px,6vw,68px);line-height:1.05;font-weight:800;letter-spacing:-.02em}
+.hero h1 span{display:block;margin-bottom:14px;font-size:.4em;line-height:1.3;font-weight:700;letter-spacing:0;color:var(--muted)}
+.lead{font-size:20px;line-height:1.55;color:var(--muted);max-width:560px}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.qbox{flex:1 1 340px;min-width:0;border:1px solid var(--line);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:18px}
+.label{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.qbox ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;font-size:18px;line-height:1.45;font-weight:600}
+.qbox li{padding-left:18px;border-left:3px solid var(--line)}
+.qbox li:first-child{border-left-color:var(--accent)}
+
+.idea{border-top:1px solid var(--line)}
+.idea .wrap{padding-block:72px;display:flex;flex-wrap:wrap;gap:48px}
+h2{font-size:34px;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+.idea h2{flex:1 1 300px}
+.idea-text{flex:2 1 480px;min-width:0;display:flex;flex-direction:column;gap:16px;font-size:18px;line-height:1.6}
+.muted{color:var(--muted)}
+
+.build{background:var(--band);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.build .wrap{padding-block:72px;display:flex;flex-direction:column;gap:40px}
+.build-head{display:flex;flex-direction:column;gap:10px;max-width:720px}
+.build-head p{font-size:18px;line-height:1.55;color:var(--muted)}
+.cols{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.steps{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.step{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px}
+.step-k{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+h3{font-size:22px;line-height:1.25;font-weight:700}
+h3.sub{font-size:18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.card{min-height:44px;padding:16px 18px;border-radius:14px;font:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px;color:var(--ink);background:var(--bg);border:2px solid var(--line)}
+.card strong{font-size:17px;line-height:1.3}
+.card span{font-size:15px;line-height:1.5;color:var(--muted)}
+.card[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{min-height:48px;padding:8px 20px;border-radius:999px;font:600 16px/1.25 var(--font);cursor:pointer;background:var(--bg);color:var(--ink);border:1px solid var(--line-strong);text-align:left}
+.chip[aria-pressed="true"]{background:var(--accent);color:#FFFFFF;border-color:var(--accent)}
+.hint{font-size:14px;color:var(--muted)}
+.desc{display:flex;flex-direction:column;gap:10px;font-size:16px;line-height:1.6;padding-top:4px}
+.group{display:flex;flex-direction:column;gap:10px}
+
+.mine{flex:1 1 320px;min-width:0;position:sticky;top:calc(24px + env(safe-area-inset-top,0px));background:var(--bg);border:2px solid var(--accent);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:18px}
+.mine h3{font-size:20px;line-height:1.3;font-weight:800}
+.mine dl{margin:0;display:flex;flex-direction:column;gap:14px;font-size:15px;line-height:1.45}
+.mine dt{color:var(--muted)}
+.mine dd{margin:2px 0 0;font-weight:700;overflow-wrap:anywhere}
+.mine dd.warn{color:var(--danger)}
+
+.send{background:var(--dark);color:var(--on-dark)}
+.send .wrap{padding-block:72px;display:flex;flex-direction:column;gap:48px}
+.send-top{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+.send-intro{flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.send-intro p{font-size:18px;line-height:1.55;color:var(--on-dark-muted)}
+.send-all{display:flex;flex-direction:column;gap:40px}
+.fields{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.send-row{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.pay h2 .opt{font-size:.6em;font-weight:600;color:var(--on-dark-muted);white-space:nowrap}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:14px;font-weight:600}
+.field input[type=text],.field textarea,.plain-input{min-height:52px;padding:12px 16px;border-radius:12px;border:1px solid var(--line-strong);background:#FFFFFF;color:#000000;font:inherit;font-size:16px;width:100%}
+.field textarea{resize:vertical}
+.field .err{font-size:14px;color:#FF8A80;font-weight:600}
+.field input[aria-invalid="true"]{border:2px solid #FF8A80}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.45;cursor:pointer}
+.check input{width:22px;height:22px;margin:1px 0 0;flex:none;accent-color:var(--accent)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.status{font-size:16px;font-weight:600;min-height:24px}
+.status.ok{color:#8FE3B4}
+.status.bad{color:#FF8A80}
+.pay{border:1px solid var(--dark-line);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:20px}
+.pay h2{font-size:28px;line-height:1.2}
+.pay p{font-size:18px;line-height:1.6;color:var(--on-dark-muted);max-width:760px}
+.btn.light{background:#FFFFFF;color:#000000}
+.btn.light:hover{background:#E8E8E8;color:#000000}
+.pay-form{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
+.pay-form .field{flex:0 1 260px;min-width:0}
+.pay .pay-thanks{font-size:20px;font-weight:700;color:#8FE3B4}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:28px;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;font-size:14px;color:var(--muted)}
+footer strong{color:var(--ink);font-weight:800}
+footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
+@media (max-width:640px){
+  .hero .wrap{padding-block:48px 40px;gap:32px}
+  .idea .wrap,.build .wrap,.send .wrap{padding-block:48px}
+  h2{font-size:28px}
+  .qbox,.pay,.mine{padding:22px}
+  .step{padding:18px}
+  .mine{position:static}
+}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top">AboutIAmI</a>
+    <nav aria-label="Розділи сторінки">
+      <a href="#idea">Ідея</a>
+      <a href="#build">Збери свій</a>
+      <a class="btn small" href="#send">Ранній доступ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-main">
+        <p class="eyebrow">Запуск — зовсім скоро</p>
+        <h1><span>Сервіс для думаючих людей</span>Працюй над собою з ШІ</h1>
+        <p class="lead">До AboutIAmI можна прийти по-різному: від головного в житті, від важливих сфер або від питання «хто я і куди йду». Збери свій варіант — і ми зробимо старт таким, як тобі зручно.</p>
+        <div class="row">
+          <a class="btn" href="#build">Зібрати свій AboutIAmI</a>
+          <a class="btn ghost" href="#idea">Що це таке</a>
+        </div>
+      </div>
+      <div class="qbox">
+        <p class="label">Питання, з яких усе починається</p>
+        <ul>
+          <li>Хто ти, які в тебе мрії, навіщо і куди йдеш?</li>
+          <li>Де твої плани?</li>
+          <li>Як ти знаєш, що рухаєшся до цілі?</li>
+          <li>Як ти аналізуєш свої результати?</li>
+          <li>Як знаєш, що фокус не втрачено?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="idea" id="idea">
+    <div class="wrap">
+      <h2>ШІ — інструмент.<br>Автор — ти.</h2>
+      <div class="idea-text">
+        <p>У світі з ШІ та роботами головною цінністю стає твоя особистість: як ти бачиш світ, які питання ставиш, які рішення ухвалюєш.</p>
+        <p>AboutIAmI поєднує твій опис себе, цілі, плани й реальні дії в живу картину, яку цікаво досліджувати, перевіряти й змінювати. ШІ допомагає знайти точні слова, продумати плани й показує, що ти заявляєш і що робиш насправді.</p>
+        <p class="muted">Тут навмисно немає обліку дрібних завдань: у центрі уваги великі сфери — навчання, кар’єра, здоров’я, стосунки та інші, які ти обереш.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="build" id="build">
+    <div class="wrap">
+      <div class="build-head">
+        <h2>Збери свій AboutIAmI</h2>
+        <p>Сім коротких кроків — і поруч складеться твій варіант сервісу. Близько 3 хвилин.</p>
+      </div>
+      <div class="cols">
+        <div class="steps">
+
+          <div class="step">
+            <div><p class="step-k">Крок 1 · одна відповідь</p><h3>Що тобі ближче?</h3></div>
+            <div class="cards" role="group" aria-label="Що тобі ближче" id="g-framing"></div>
+            <div class="desc" id="framing-desc" hidden><p id="fd1"></p><p class="muted" id="fd2"></p></div>
+          </div>
+
+          <div class="step">
+            <div><p class="step-k">Крок 2 · одна відповідь</p><h3>Наш сервіс має сім вкладок. З якої ти хотів би почати?</h3></div>
+            <div class="cards" role="group" aria-label="Вкладка для старту" id="g-start"></div>
+          </div>
+
+          <div class="step">
+            <div><p class="step-k">Крок 3 · до трьох відповідей</p><h3>Що з цих семи для тебе найцінніше?</h3></div>
+            <div class="chips" role="group" aria-label="Найцінніше" id="g-values"></div>
+            <p class="hint">Обрано <span id="values-count">0</span> з 3</p>
+          </div>
+
+          <div class="step">
+            <div><p class="step-k">Крок 4 · про тебе зараз</p><h3>Чи працюєш ти над собою?</h3></div>
+            <div class="chips" role="group" aria-label="Чи працюєш над собою" id="g-work"></div>
+            <h3 class="sub">Чи працюєш над собою з ШІ?</h3>
+            <div class="chips" role="group" aria-label="Чи працюєш над собою з ШІ" id="g-workai"></div>
+            <h3 class="sub">Для чого з цього в тебе вже є сервіс або своя система?</h3>
+            <div class="group">
+              <div class="chips" role="group" aria-label="Для чого вже є сервіс" id="g-have"></div>
+              <p class="hint">Можна кілька. Якщо нічого — просто пропусти.</p>
+            </div>
+            <div class="field">
+              <label for="have-text" class="hint" style="font-weight:600;color:var(--ink)">Якими саме сервісами користуєшся? Необов’язково</label>
+              <input class="plain-input" id="have-text" type="text" maxlength="300" placeholder="Наприклад: Notion для плану, Strava для спорту" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="step">
+            <div><p class="step-k">Крок 5 · ідея</p><h3>Наскільки тобі близька ідея роботи над собою з ШІ?</h3></div>
+            <div class="group">
+              <div class="chips" role="group" aria-label="Близькість ідеї від 1 до 5" id="g-close"></div>
+              <p class="hint">1 — «зовсім не моє», 5 — «хочу вже»</p>
+            </div>
+            <h3>Наскільки корисним для тебе був би такий сервіс?</h3>
+            <div class="group">
+              <div class="chips" role="group" aria-label="Корисність сервісу від 1 до 5" id="g-useful"></div>
+              <p class="hint">1 — «зовсім не корисним», 5 — «дуже корисним»</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div><p class="step-k">Крок 6 · оплата</p><h3>Як тобі зручніше платити?</h3></div>
+            <div class="chips" role="group" aria-label="Як зручніше платити" id="g-payhow"></div>
+            <h3 class="sub">Скільки ти готовий платити на місяць?</h3>
+            <div class="chips" role="group" aria-label="Скільки на місяць" id="g-paymonth"></div>
+            <h3 class="sub">Скільки ти готовий платити на рік?</h3>
+            <div class="chips" role="group" aria-label="Скільки на рік" id="g-payyear"></div>
+          </div>
+
+          <div class="step">
+            <div><p class="step-k">Крок 7 · кілька відповідей</p><h3>Що могло б тебе зупинити?</h3></div>
+            <div class="chips" role="group" aria-label="Що могло б зупинити" id="g-stops"></div>
+          </div>
+
+        </div>
+
+        <aside class="mine" aria-label="Твій варіант">
+          <div>
+            <p class="label" style="margin-bottom:6px">Твій варіант · <span id="done-count">0</span> з 7 кроків</p>
+            <h3>AboutIAmI: робота над собою з ШІ — <span id="sum-framing" style="color:var(--accent)">…</span></h3>
+          </div>
+          <dl>
+            <div><dt>Починаєш з</dt><dd id="sum-start">—</dd></div>
+            <div><dt>Найцінніше</dt><dd id="sum-values">—</dd></div>
+            <div><dt>Працюєш над собою · з ШІ</dt><dd id="sum-work">—</dd></div>
+            <div><dt>Вже є сервіс або своя система для</dt><dd id="sum-have">—</dd></div>
+            <div><dt>Сервіси, якими користуєшся</dt><dd id="sum-havetext">—</dd></div>
+            <div><dt>Ідея близька · сервіс корисний</dt><dd id="sum-scales">—</dd></div>
+            <div><dt>Оплата</dt><dd id="sum-pay">—</dd></div>
+            <div><dt>Може зупинити</dt><dd id="sum-stops">—</dd></div>
+          </dl>
+          <a class="btn" href="#send">Надіслати свій варіант</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="send" id="send">
+    <div class="wrap">
+      <form class="send-all" id="send-form" novalidate>
+      <div class="send-top">
+        <div class="send-intro">
+          <h2>Надішли свій варіант</h2>
+          <p>Залиш ім’я і контакт: так ми зрозуміємо, чия це відповідь, повідомимо про старт і дамо ранній доступ.</p>
+        </div>
+        <div class="fields">
+          <div class="field">
+            <label for="name">Ім’я</label>
+            <input id="name" type="text" maxlength="120" autocomplete="name" aria-describedby="name-err">
+            <span class="err" id="name-err" hidden>Напиши, як до тебе звертатися.</span>
+          </div>
+          <div class="field">
+            <label for="contact">Контакт: пошта, телефон або Telegram</label>
+            <input id="contact" type="text" maxlength="160" placeholder="ти@приклад.com" autocomplete="email" aria-describedby="contact-err">
+            <span class="err" id="contact-err" hidden>Залиш контакт, щоб ми могли з тобою зв’язатися.</span>
+          </div>
+          <label class="check" for="interview">
+            <input id="interview" type="checkbox">
+            <span>Готовий(-а) на коротке інтерв’ю, 15–20 хвилин</span>
+          </label>
+          <div class="field">
+            <label for="comment">Коментар</label>
+            <textarea id="comment" rows="3" maxlength="2000"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true"><label for="website">Не заповнюй це поле</label><input id="website" type="text" tabindex="-1" autocomplete="off"></div>
+        </div>
+      </div>
+
+      <div class="pay">
+        <h2>Проголосуй гривнею <span class="opt">(необов’язково)</span></h2>
+        <p>Якщо вважаєш AboutIAmI важливим — підтримай його передоплатою. Для нас це найчесніший спосіб зрозуміти, чи справді ідея потрібна. Сума — на твій розсуд, навіть символічна.</p>
+        <div id="pay-start"><button class="btn light" type="button" id="pay-open">Підтримати передоплатою</button></div>
+        <div class="pay-form" id="pay-form" hidden>
+          <div class="field">
+            <label for="pay-amount">Сума, грн</label>
+            <input id="pay-amount" type="text" inputmode="numeric" maxlength="7" autocomplete="off" aria-describedby="pay-err">
+            <span class="err" id="pay-err" hidden>Вкажи суму в гривнях — число більше нуля.</span>
+          </div>
+          <div><button class="btn light" type="button" id="pay-go">Оплатити</button></div>
+        </div>
+        <p class="pay-thanks" id="pay-thanks" role="status" hidden>Дякуємо! Ваша спроба оплатити зарахована як голос гривнею! Гроші не списано.</p>
+      </div>
+
+      <div class="send-row">
+        <button class="btn" type="submit" id="send-btn">Надіслати</button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><strong>AboutIAmI</strong><span id="legal-name"></span></span>
+    <nav aria-label="Документи" id="legal-links"></nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Налаштування: заповнити перед розсилкою ---------- */
+  var CONFIG = {
+    ENDPOINT: 'https://script.google.com/macros/s/AKfycbwK3n_kcmtVz4meZ-8Hw1JNX2TWKXMJi_lQ8Pqp0Q7HlGuV0cG11Cv0HiQI3QVtG9zjYw/exec',     // адреса скрипта Google Таблиці (…/exec). Поки порожньо — відповіді не зберігаються.
+    LEGAL_NAME: '',   // назва ФОП
+    TERMS_URL: '',    // угода користувача
+    PRIVACY_URL: '',  // політика конфіденційності
+    REFUND_URL: '',   // повернення коштів
+    EMAIL: ''         // пошта для звʼязку
+  };
+
+  /* Мітка групи в посиланні: …/#friends або …/?g=friends */
+  var GROUPS = { friends: 'Друзі та близькі', target: 'Цільова аудиторія', general: 'Загальна вибірка', investors: 'Інвестори і партнери' };
+
+  var FRAMINGS = [
+    { id: 'focus', label: 'Тримай фокус на важливому',
+      question: 'Що для тебе головне і скільки уваги ти цьому приділяєш?',
+      d1: 'Ми створюємо AboutIAmI, щоб допомогти тобі визначати власні пріоритети й тримати їх у полі зору. Тут ти описуєш, хто ти й куди хочеш рухатися, визначаєш важливі сфери життя та складаєш план від найближчих кроків до далеких цілей.',
+      d2: 'ШІ допомагає зібрати це в цілісну картину й за твоїми записами побачити, як щоденні дії відповідають тому, що ти вважаєш важливим. Ти осмислюєш свій рух і вирішуєш, на чому зосередитися далі.' },
+    { id: 'spheres', label: 'Важливі сфери твого життя в одній картині',
+      question: 'Здоров’я, стосунки, робота, навчання. Що відбувається в кожній із важливих для тебе сфер і як вони пов’язані між собою?',
+      d1: 'Ми створюємо AboutIAmI, де ти збираєш ці сфери в одну картину, визначаєш їхні пріоритети, ставиш цілі та ведеш план від найближчих кроків до далеких задумів. Основою стає твоє бачення себе: хто ти, що для тебе важливо й куди хочеш рухатися.',
+      d2: 'ШІ допомагає осмислювати ці зв’язки та за твоїми записами зіставляти наміри з діями й результатами. Ти бачиш зміни та вирішуєш, які сфери потребують уваги.' },
+    { id: 'who', label: 'Хто я і куди йду',
+      question: 'Як ти бачиш себе і світ? На що спираєшся у своїх рішеннях і який шлях хочеш обрати?',
+      d1: 'Ми створюємо AboutIAmI, де ти формулюєш власну декларацію: свій світогляд, цінності й напрям руху. Пов’язуєш це з важливими сферами життя, визначаєш пріоритети та складаєш план від найближчих кроків до далеких цілей.',
+      d2: 'ШІ допомагає уточнювати думки й за твоїми записами досліджувати, як твоє бачення проявляється в діях і результатах. З досвідом ти можеш переглядати свої переконання, уточнювати план і повертати увагу до важливого.' }
+  ];
+  var TABS = [
+    { label: 'Декларація', desc: 'Описати свою картину світу, власні цілі й сенси: навіщо все і куди йду' },
+    { label: 'Важливі сфери життя', desc: 'Картка на кожну сферу (здоров’я, кар’єра, навчання чи знання…) з цілями й показниками' },
+    { label: 'План', desc: 'Що зробити за тиждень, місяць, рік чи десять років: від найближчих кроків до найдальших планів' },
+    { label: 'Схема', desc: 'Усі сфери життя на одній картині: за якою логікою ти дієш, що насправді головне, чи все однаково важливо' },
+    { label: 'Агент', desc: 'Просто поговорити з ШІ про себе' },
+    { label: 'Аналітика', desc: 'Що я заявляю і що роблю насправді (працює, коли заповнено інші вкладки)' },
+    { label: 'Ресурси', desc: 'Корисні сервіси й посилання для кожної сфери: квитки — у подорожах, фітнес-трекер — у здоров’ї' }
+  ];
+  var TAB_LABELS = TABS.map(function (t) { return t.label; });
+  var WORK = ['Так, регулярно', 'Час від часу', 'Ні'];
+  var WORK_AI = ['Так, регулярно', 'Пробував(-ла)', 'Ні'];
+  var STOPS = ['не хочу довіряти ШІ особисте', 'нема часу', 'вже маю свою систему', 'не розумію, навіщо це мені', 'ціна', 'інше'];
+  var PAY_HOW = ['щомісяця', 'раз на рік', 'безкоштовно + оплата за фактичне використання ШІ'];
+  var PAY_MONTH = ['лише безкоштовно', '200–400 грн (5–9$)', '400–800 грн (9–18$)', 'понад 800 грн (понад 18$)'];
+  var PAY_YEAR = ['безкоштовно + оплата за фактичне використання ШІ', 'до 2000 грн (до 50$)', '2000–4000 грн (50–90$)', '4000–8000 грн (90–180$)'];
+
+  var st = { framing: null, start: null, values: [], work: null, workAI: null, have: [], stops: [],
+             close: null, useful: null, payHow: null, payMonth: null, payYear: null };
+  var sending = false, sent = false, vote = null;
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* група з посилання — запамʼятовуємо одразу, бо далі хеш міняють якорі сторінки */
+  var group = (function () {
+    var key = '';
+    try { key = new URLSearchParams(location.search).get('g') || ''; } catch (e) {}
+    if (!key) key = (location.hash || '').replace('#', '');
+    key = key.toLowerCase();
+    if (!GROUPS[key]) { try { key = sessionStorage.getItem('aboutiami-group') || ''; } catch (e) { key = ''; } }
+    if (GROUPS[key]) { try { sessionStorage.setItem('aboutiami-group', key); } catch (e) {} return GROUPS[key]; }
+    return 'Без мітки';
+  })();
+
+  function makeButtons(hostId, items, cls, isOn, onPick) {
+    var host = $(hostId);
+    items.forEach(function (item) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = cls;
+      b.setAttribute('aria-pressed', 'false');
+      if (cls === 'card') {
+        var s = document.createElement('strong'); s.textContent = item.label; b.appendChild(s);
+        var d = document.createElement('span'); d.textContent = item.sub; b.appendChild(d);
+      } else {
+        b.textContent = String(item.label);
+      }
+      b.addEventListener('click', function () { onPick(item.value); render(); });
+      host.appendChild(b);
+      b._isOn = function () { return isOn(item.value); };
+    });
+  }
+  function single(hostId, list, key) {
+    makeButtons(hostId, list.map(function (v) { return { label: v, value: v }; }), 'chip',
+      function (v) { return st[key] === v; },
+      function (v) { st[key] = st[key] === v ? null : v; });
+  }
+  function multi(hostId, list, key, max) {
+    makeButtons(hostId, list.map(function (v) { return { label: v, value: v }; }), 'chip',
+      function (v) { return st[key].indexOf(v) !== -1; },
+      function (v) {
+        var i = st[key].indexOf(v);
+        if (i !== -1) st[key].splice(i, 1);
+        else if (!max || st[key].length < max) st[key].push(v);
+      });
+  }
+
+  makeButtons('g-framing', FRAMINGS.map(function (f) { return { label: f.label, sub: f.question, value: f.id }; }), 'card',
+    function (v) { return st.framing === v; }, function (v) { st.framing = st.framing === v ? null : v; });
+  makeButtons('g-start', TABS.map(function (t) { return { label: t.label, sub: t.desc, value: t.label }; }), 'card',
+    function (v) { return st.start === v; }, function (v) { st.start = st.start === v ? null : v; });
+  multi('g-values', TAB_LABELS, 'values', 3);
+  single('g-work', WORK, 'work');
+  single('g-workai', WORK_AI, 'workAI');
+  multi('g-have', TAB_LABELS, 'have', 0);
+  multi('g-stops', STOPS, 'stops', 0);
+  single('g-close', [1, 2, 3, 4, 5], 'close');
+  single('g-useful', [1, 2, 3, 4, 5], 'useful');
+  single('g-payhow', PAY_HOW, 'payHow');
+  single('g-paymonth', PAY_MONTH, 'payMonth');
+  single('g-payyear', PAY_YEAR, 'payYear');
+
+  function framingObj() {
+    for (var i = 0; i < FRAMINGS.length; i++) if (FRAMINGS[i].id === st.framing) return FRAMINGS[i];
+    return null;
+  }
+  function payList() {
+    return [st.payHow, st.payMonth ? st.payMonth + ' на місяць' : null, st.payYear ? st.payYear + ' на рік' : null]
+      .filter(function (x) { return x; });
+  }
+  function doneCount() {
+    return [st.framing !== null, st.start !== null, st.values.length > 0,
+            st.work !== null && st.workAI !== null,
+            st.close !== null && st.useful !== null,
+            st.payHow !== null || st.payMonth !== null || st.payYear !== null,
+            st.stops.length > 0]
+      .filter(function (x) { return x; }).length;
+  }
+
+  function render() {
+    Array.prototype.forEach.call(document.querySelectorAll('.card,.chip'), function (b) {
+      if (b._isOn) b.setAttribute('aria-pressed', b._isOn() ? 'true' : 'false');
+    });
+    var f = framingObj();
+    $('framing-desc').hidden = !f;
+    $('fd1').textContent = f ? f.d1 : '';
+    $('fd2').textContent = f ? f.d2 : '';
+    $('sum-framing').textContent = f ? f.label.toLowerCase() : '…';
+    $('values-count').textContent = String(st.values.length);
+    $('done-count').textContent = String(doneCount());
+    $('sum-start').textContent = st.start || '—';
+    $('sum-values').textContent = st.values.length ? st.values.join(', ') : '—';
+    $('sum-work').textContent = (st.work || '—') + ' · ' + (st.workAI || '—');
+    $('sum-have').textContent = st.have.length ? st.have.join(', ') : '—';
+    $('sum-havetext').textContent = $('have-text').value.trim() || '—';
+    var stops = $('sum-stops');
+    stops.textContent = st.stops.length ? st.stops.join(', ') : '—';
+    stops.className = st.stops.length ? 'warn' : '';
+    $('sum-scales').textContent = (st.close !== null ? st.close + '/5' : '—') + ' · ' + (st.useful !== null ? st.useful + '/5' : '—');
+    var pay = payList();
+    $('sum-pay').textContent = pay.length ? pay.join(' · ') : '—';
+  }
+
+  /* ---------- Відправка ---------- */
+  function setStatus(text, kind) {
+    var s = $('status');
+    s.textContent = text;
+    s.className = 'status' + (kind ? ' ' + kind : '');
+  }
+  function check(id, errId) {
+    var el = $(id), ok = el.value.trim().length > 1;
+    el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    $(errId).hidden = ok;
+    return ok;
+  }
+  function payload() {
+    var f = framingObj();
+    return {
+      group: group,
+      name: $('name').value.trim(),
+      contact: $('contact').value.trim(),
+      interview: $('interview').checked ? 'Так' : 'Ні',
+      comment: $('comment').value.trim(),
+      framing: f ? f.label : '',
+      start: st.start || '',
+      values: st.values.join(', '),
+      work: st.work || '',
+      workAI: st.workAI || '',
+      have: st.have.join(', '),
+      haveText: $('have-text').value.trim(),
+      stops: st.stops.join(', '),
+      close: st.close !== null ? st.close : '',
+      useful: st.useful !== null ? st.useful : '',
+      payHow: st.payHow || '',
+      payMonth: st.payMonth || '',
+      payYear: st.payYear || '',
+      steps: doneCount() + ' з 7',
+      vote: vote !== null ? vote : '',
+      website: $('website').value
+    };
+  }
+  $('send-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (sending || sent) return;
+    var okName = check('name', 'name-err'), okContact = check('contact', 'contact-err');
+    if (!okName || !okContact) {
+      setStatus('', '');
+      $(okName ? 'contact' : 'name').focus();
+      return;
+    }
+    if (!CONFIG.ENDPOINT) {
+      setStatus('Запис відповідей ще не підключено: цю відповідь не збережено.', 'bad');
+      return;
+    }
+    sending = true;
+    $('send-btn').disabled = true;
+    setStatus('Надсилаємо…', '');
+    fetch(CONFIG.ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload())
+    }).then(function (r) { return r.json(); }).then(function (res) {
+      if (!res || !res.ok) throw new Error('not ok');
+      sent = true;
+      $('send-btn').textContent = 'Надіслано';
+      setStatus('Дякуємо! Твій варіант у нас.', 'ok');
+    }).catch(function () {
+      sending = false;
+      $('send-btn').disabled = false;
+      setStatus('Не вдалося надіслати. Перевір інтернет і натисни ще раз.', 'bad');
+    });
+  });
+  $('have-text').addEventListener('input', render);
+  ['name', 'contact'].forEach(function (id) {
+    $(id).addEventListener('input', function () {
+      if ($(id).getAttribute('aria-invalid') === 'true') check(id, id + '-err');
+    });
+  });
+
+  /* ---------- Передоплата і підвал ---------- */
+  (function () {
+    /* Голос гривнею: гроші не списуються, записуємо лише суму, яку людина була готова заплатити */
+    $('pay-open').addEventListener('click', function () {
+      $('pay-start').hidden = true;
+      $('pay-form').hidden = false;
+      $('pay-amount').focus();
+    });
+    $('pay-amount').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); $('pay-go').click(); }
+    });
+    $('pay-go').addEventListener('click', function () {
+      var raw = $('pay-amount').value.replace(/[\s,.]/g, '');
+      var ok = /^\d+$/.test(raw) && parseInt(raw, 10) > 0;
+      $('pay-amount').setAttribute('aria-invalid', ok ? 'false' : 'true');
+      $('pay-err').hidden = ok;
+      if (!ok) { $('pay-amount').focus(); return; }
+      vote = parseInt(raw, 10);
+      $('pay-form').hidden = true;
+      $('pay-thanks').hidden = false;
+      if (CONFIG.ENDPOINT) {
+        fetch(CONFIG.ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ type: 'vote', amount: vote, group: group,
+            name: $('name').value.trim(), contact: $('contact').value.trim(), website: $('website').value })
+        }).catch(function () {});
+      }
+    });
+    $('legal-name').textContent = ' · ' + (CONFIG.LEGAL_NAME || '[НАЗВА ФОП]');
+    var links = [['Угода користувача', CONFIG.TERMS_URL], ['Політика конфіденційності', CONFIG.PRIVACY_URL], ['Повернення коштів', CONFIG.REFUND_URL]];
+    var host = $('legal-links');
+    links.forEach(function (l) {
+      var el;
+      if (l[1]) { el = document.createElement('a'); el.href = l[1]; el.target = '_blank'; el.rel = 'noopener'; }
+      else { el = document.createElement('span'); }
+      el.textContent = l[0];
+      host.appendChild(el);
+    });
+    var c = document.createElement('span');
+    c.textContent = 'Контакти: ' + (CONFIG.EMAIL || '[ПОШТА]');
+    host.appendChild(c);
+  })();
+
+  render();
+})();
+</script>
+</body>
+</html>
