@@ -3,6 +3,18 @@
    Імен не збирає: відвідувач — це випадковий номер у його браузері. Хто саме — видно лише з мітки в посиланні (?to=...). */
 (function () {
   'use strict';
+  /* Режим власника (?me, вимкнути ?me=off): з цього браузера нічого не надсилається. Спільний з лендінгом. */
+  try {
+    var oq = new URLSearchParams(location.search);
+    if (oq.has('me')) { if (oq.get('me') === 'off') localStorage.removeItem('aia_owner'); else localStorage.setItem('aia_owner', '1'); }
+    if (localStorage.getItem('aia_owner') === '1') {
+      var ob = document.createElement('div');
+      ob.textContent = 'Режим власника: нічого не надсилається';
+      ob.setAttribute('style', 'position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;padding:6px 10px;border-radius:6px;background:#7a1f3d;color:#fff;font:600 12px/1.3 system-ui,sans-serif;pointer-events:none');
+      (document.body || document.documentElement).appendChild(ob);
+      return;
+    }
+  } catch (e) {}
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwK3n_kcmtVz4meZ-8Hw1JNX2TWKXMJi_lQ8Pqp0Q7HlGuV0cG11Cv0HiQI3QVtG9zjYw/exec';
   var MAX_EVENTS = 400;      // стеля на один візит
   var FLUSH_MS = 15000;

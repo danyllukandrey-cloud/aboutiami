@@ -351,6 +351,22 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
     CONTACT: 'тел. 0939871491'   // контакт у підвалі
   };
 
+  /* Режим власника: відкрий сайт з ?me — і з цього браузера нічого не надсилається (ні відповіді, ні голоси).
+     Режим запамʼятовується в браузері й діє також на MVP-презентації. Вимкнути: ?me=off */
+  var OWNER = (function () {
+    try {
+      var q = new URLSearchParams(location.search);
+      if (q.has('me')) { if (q.get('me') === 'off') localStorage.removeItem('aia_owner'); else localStorage.setItem('aia_owner', '1'); }
+      return localStorage.getItem('aia_owner') === '1';
+    } catch (e) { return false; }
+  })();
+  if (OWNER) {
+    var ob = document.createElement('div');
+    ob.textContent = 'Режим власника: нічого не надсилається';
+    ob.setAttribute('style', 'position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;padding:6px 10px;border-radius:6px;background:#7a1f3d;color:#fff;font:600 12px/1.3 system-ui,sans-serif;pointer-events:none');
+    document.body.appendChild(ob);
+  }
+
   /* Мітка групи в посиланні: …/#friends або …/?g=friends */
   var GROUPS = { friends: 'Друзі та близькі', target: 'Цільова аудиторія', general: 'Загальна вибірка', investors: 'Інвестори і партнери' };
 
@@ -543,6 +559,13 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
       $(okName ? 'contact' : 'name').focus();
       return;
     }
+    if (OWNER) {
+      sent = true;
+      $('send-btn').disabled = true;
+      $('send-btn').textContent = 'Надіслано (тест)';
+      setStatus('Режим власника: відповідь нікуди не надіслано.', 'ok');
+      return;
+    }
     if (!CONFIG.ENDPOINT) {
       setStatus('Запис відповідей ще не підключено: цю відповідь не збережено.', 'bad');
       return;
@@ -592,7 +615,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
       vote = parseInt(raw, 10);
       $('pay-form').hidden = true;
       $('pay-thanks').hidden = false;
-      if (CONFIG.ENDPOINT) {
+      if (CONFIG.ENDPOINT && !OWNER) {
         fetch(CONFIG.ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
