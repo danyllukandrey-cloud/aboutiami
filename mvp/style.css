@@ -347,17 +347,23 @@
 @media(max-width:767px){.home-nav-links{gap:14px}.home-nav .brand{font-size:19px}.home-nav .brand svg{width:22px;height:22px}.product-home h1.home-title{font-size:36px}}
 @media(max-width:420px){.home-nav{flex-wrap:wrap}.home-nav-links{width:100%;justify-content:space-between}}
 
-/* Контакти автора й форма зв’язку внизу сторінки */
-.contactband{border-top:1px solid var(--rule);margin-top:48px;padding-block:40px 36px;background:#f7f8fb}
-.contactgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px clamp(24px,5vw,72px);align-items:start}
-.contact-me .kicker:before{content:none}
-.contact-me h2{font-size:clamp(24px,2.4vw,32px);letter-spacing:-.05em;line-height:1.15;font-weight:650;margin:10px 0 12px}
-.contact-me p{margin:6px 0;max-width:42ch}
-.contact-line{font-size:17px;font-weight:650}.contact-line a{color:var(--blue);text-decoration:underline;text-underline-offset:4px;user-select:all}
-.contactform .field{margin:0 0 12px}
-.contactform .field input,.contactform .field textarea{background:#fff}
+/* Контакти автора й форма зв’язку внизу сторінки: чорна смуга, як блок надсилання в лендінгу */
+.contactband{margin-top:48px;padding-block:48px 44px;background:#000;color:#fff}
+.contactgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:28px clamp(24px,5vw,72px);align-items:start}
+.contactband .kicker{color:#9db4ff}.contact-me .kicker:before{content:none}
+.contact-me h2{font-size:clamp(26px,2.6vw,36px);letter-spacing:-.05em;line-height:1.15;font-weight:650;margin:10px 0 14px}
+.contact-me p{margin:6px 0;max-width:42ch;color:#d6d6d6}
+.contactband .hint{color:#d6d6d6}
+.contact-line{font-size:18px;font-weight:650}.contactband .contact-line{color:#fff}
+.contact-line a{color:#fff;text-decoration:underline;text-decoration-color:#9db4ff;text-underline-offset:5px;user-select:all}
+.contactform .field{margin:0 0 14px;color:#fff}
+.contactform .field input,.contactform .field textarea{background:#fff;color:#000;border-color:#8c8c8c;border-radius:8px;padding:11px 14px}
+.contactband .button.primary{background:#fff;color:#000;border-color:#fff}
+.contactband .button.primary:hover{background:#e8e8e8;color:#000}
+.contactband .button:disabled{opacity:.6}
+.contactband :focus-visible{outline-color:#9db4ff}
 .contact-send{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:4px}
-.cf-status{margin:0;font-size:14px}.cf-status.ok{color:#006b50}.cf-status.bad{color:#ac5a3f}
+.cf-status{margin:0;font-size:15px;font-weight:600}.cf-status.ok{color:#8fe3b4}.cf-status.bad{color:#ff8a80}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.contactband+.foot{margin-top:0}
-@media(max-width:767px){.contactgrid{grid-template-columns:1fr}.contactband{margin-top:32px;padding-block:28px}}
+.contactband+.foot{margin-top:0;border-top:0}
+@media(max-width:767px){.contactgrid{grid-template-columns:1fr}.contactband{margin-top:32px;padding-block:32px}}
