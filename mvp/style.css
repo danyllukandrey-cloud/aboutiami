@@ -373,3 +373,9 @@
 .msgr-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:9px 16px;border:1px solid #595959;border-radius:999px;color:#fff;font-size:15px;font-weight:650}
 .msgr-btn svg{width:18px;height:18px;color:#9db4ff}
 .msgr-btn:hover{border-color:#fff;background:#1a1a1a}
+
+.msgr-btn.viber{background:#7360f2;border-color:#7360f2}
+.msgr-btn.tg{background:#229ed9;border-color:#229ed9}
+.msgr-btn.wa{background:#1a8d4a;border-color:#1a8d4a}
+.msgr-btn.viber svg,.msgr-btn.tg svg,.msgr-btn.wa svg{color:#fff}
+.msgr-btn.viber:hover,.msgr-btn.tg:hover,.msgr-btn.wa:hover{filter:brightness(1.12);border-color:#fff}
