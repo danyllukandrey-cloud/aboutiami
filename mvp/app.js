@@ -629,28 +629,28 @@ function contactBlock(){
       <p class="hint">Або залиш свій контакт у формі, і я напишу тобі сам.</p>
     </div>
     <form id="contactform" class="contactform" novalidate>
-      <div class="field"><label for="cf-name">Ім’я</label><input id="cf-name" name="name" type="text" maxlength="120" autocomplete="name" value="${v('name')}"></div>
-      <div class="field"><label for="cf-contact">Контакт: пошта, телефон або Telegram</label><input id="cf-contact" name="contact" type="text" maxlength="160" autocomplete="email" value="${v('contact')}"></div>
-      <div class="field"><label for="cf-comment">Коментар</label><textarea id="cf-comment" name="comment" rows="3" maxlength="2000">${v('comment')}</textarea></div>
-      <div class="hp" aria-hidden="true"><label for="cf-website">Не заповнюй це поле</label><input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+      <div class="field"><label for="cf-name">Ім’я</label><input id="cf-name" name="cf_name" type="text" maxlength="120" autocomplete="name" value="${v('name')}"></div>
+      <div class="field"><label for="cf-contact">Контакт: пошта, телефон або Telegram</label><input id="cf-contact" name="cf_contact" type="text" maxlength="160" autocomplete="email" value="${v('contact')}"></div>
+      <div class="field"><label for="cf-comment">Коментар</label><textarea id="cf-comment" name="cf_comment" rows="3" maxlength="2000">${v('comment')}</textarea></div>
+      <div class="hp" aria-hidden="true"><label for="cf-website">Не заповнюй це поле</label><input id="cf-website" name="cf_website" type="text" tabindex="-1" autocomplete="off"></div>
       <div class="contact-send"><button class="button primary" type="submit" ${cform.sent||cform.sending?'disabled':''}>${cform.sent?'Надіслано':'Надіслати'}</button><p class="cf-status ${cform.kind}" role="status" aria-live="polite">${E(cform.status)}</p></div>
     </form>
   </div></section>`;
 }
 function cfStatus(text,kind){cform.status=text;cform.kind=kind||'';const s=$('.cf-status');if(s){s.textContent=text;s.className='cf-status '+cform.kind}}
-document.addEventListener('input',e=>{const f=e.target.closest?.('#contactform');if(f&&['name','contact','comment'].includes(e.target.name))cform[e.target.name]=e.target.value});
+document.addEventListener('input',e=>{const f=e.target.closest?.('#contactform');if(f&&['cf_name','cf_contact','cf_comment'].includes(e.target.name))cform[e.target.name.slice(3)]=e.target.value});
 document.addEventListener('submit',e=>{
   if(e.target.id!=='contactform')return;e.preventDefault();
   if(cform.sent||cform.sending)return;
-  const f=e.target,name=f.name.value.trim(),contact=f.contact.value.trim(),comment=f.comment.value.trim();
-  if(name.length<2){f.name.focus();cfStatus('Напиши, як до тебе звертатися.','bad');return}
-  if(contact.length<3){f.contact.focus();cfStatus('Залиш контакт, щоб я міг відповісти.','bad');return}
+  const f=e.target,name=f.cf_name.value.trim(),contact=f.cf_contact.value.trim(),comment=f.cf_comment.value.trim();
+  if(name.length<2){f.cf_name.focus();cfStatus('Напиши, як до тебе звертатися.','bad');return}
+  if(contact.length<3){f.cf_contact.focus();cfStatus('Залиш контакт, щоб я міг відповісти.','bad');return}
   let owner=false;try{owner=localStorage.getItem('aia_owner')==='1'}catch(_){}
   const btnEl=f.querySelector('button[type=submit]');
   const done=()=>{cform.sent=true;cform.sending=false;btnEl.disabled=true;btnEl.textContent='Надіслано'};
   if(owner){done();cfStatus('Режим власника: нічого не надіслано.','ok');return}
   let tag='';try{tag=(new URLSearchParams(location.search).get('to')||'').slice(0,60)}catch(_){}
-  const body={group:'MVP-презентація'+(tag?' · '+tag:''),name,contact:/^[+\d][\d\s()\-]*$/.test(contact)?"'"+contact:contact,interview:'',comment:comment+(comment?' ':'')+'[з розділу: '+(location.hash.slice(1)||'main')+']',framing:'',start:'',values:'',work:'',workAI:'',have:'',haveText:'',stops:'',close:'',useful:'',payHow:'',payMonth:'',payYear:'',steps:'',vote:'',website:f.website.value};
+  const body={group:'MVP-презентація'+(tag?' · '+tag:''),name,contact:/^[+\d][\d\s()\-]*$/.test(contact)?"'"+contact:contact,interview:'',comment:comment+(comment?' ':'')+'[з розділу: '+(location.hash.slice(1)||'main')+']',framing:'',start:'',values:'',work:'',workAI:'',have:'',haveText:'',stops:'',close:'',useful:'',payHow:'',payMonth:'',payYear:'',steps:'',vote:'',website:f.cf_website.value};
   cform.sending=true;btnEl.disabled=true;cfStatus('Надсилаю…','');
   fetch(CONTACT_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)})
     .then(r=>r.json()).then(res=>{if(!res||!res.ok)throw new Error('not ok');done();cform.name=cform.contact=cform.comment='';cfStatus('Дякую! Повідомлення в мене, відповім найближчим часом.','ok')})
