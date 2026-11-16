@@ -346,3 +346,18 @@
 .home-title em{font-style:normal;color:var(--blue)}
 @media(max-width:767px){.home-nav-links{gap:14px}.home-nav .brand{font-size:19px}.home-nav .brand svg{width:22px;height:22px}.product-home h1.home-title{font-size:36px}}
 @media(max-width:420px){.home-nav{flex-wrap:wrap}.home-nav-links{width:100%;justify-content:space-between}}
+
+/* Контакти автора й форма зв’язку внизу сторінки */
+.contactband{border-top:1px solid var(--rule);margin-top:48px;padding-block:40px 36px;background:#f7f8fb}
+.contactgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px clamp(24px,5vw,72px);align-items:start}
+.contact-me .kicker:before{content:none}
+.contact-me h2{font-size:clamp(24px,2.4vw,32px);letter-spacing:-.05em;line-height:1.15;font-weight:650;margin:10px 0 12px}
+.contact-me p{margin:6px 0;max-width:42ch}
+.contact-line{font-size:17px;font-weight:650}.contact-line a{color:var(--blue);text-decoration:underline;text-underline-offset:4px;user-select:all}
+.contactform .field{margin:0 0 12px}
+.contactform .field input,.contactform .field textarea{background:#fff}
+.contact-send{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:4px}
+.cf-status{margin:0;font-size:14px}.cf-status.ok{color:#006b50}.cf-status.bad{color:#ac5a3f}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.contactband+.foot{margin-top:0}
+@media(max-width:767px){.contactgrid{grid-template-columns:1fr}.contactband{margin-top:32px;padding-block:28px}}

@@ -130,7 +130,7 @@ Object.assign(paths,{
 const two=n=>String(n).padStart(2,'0');
 const NAV=[['main','Головна'],['home','Макет сайту'],['demo','Макет застосунку'],['slides','Детальна презентація']];
 const nav=group=>`<div class="topline"><header class="sitehead bound"><a href="#main" aria-label="AboutIAmI, головна">${brand}</a><nav class="nav" aria-label="Розділи">${NAV.map(([key,label])=>`<a href="#${key==='demo'?'demo/'+lastTab():key==='slides'?'slides/1':key}" ${key===group?'aria-current="page"':''}>${label}</a>`).join('')}</nav></header></div>`;
-const foot=()=>`<footer class="foot"><div class="bound"><b>AboutIAmI</b><span>Презентаційна модель · Українська версія</span></div></footer>`;
+const foot=()=>contactBlock()+`<footer class="foot"><div class="bound"><b>AboutIAmI</b><span>Презентаційна модель · Українська версія</span></div></footer>`;
 
 /* Детальна презентація складових сервісу.
    Слайд: [мітка, заголовок, опис, продовження, назва прикладу, рядки прикладу, вкладка макета, екран продукту] */
@@ -611,6 +611,51 @@ function demo(tab){
 }
 
 function slideGraphic(tag){if(tag==='Картки')return `<div class="slide-meter"><div><b>6 <small>/ 12</small></b><span>занять з англійської</span></div><div class="ticks" aria-label="50 відсотків">${Array.from({length:12},(_,i)=>`<i class="${i<6?'on':''}"></i>`).join('')}</div></div>`;if(tag==='Схема')return `<svg class="slide-map" viewBox="0 0 410 90" role="img" aria-label="Зв’язок навчання з кар’єрою; мотив навчання — цікаво, мотив кар’єри — необхідно"><path fill="none" stroke="#8c8c8c" d="M116 33h56q7 0 7 7v6q0 7 7 7h87"/><rect x="20" y="24" width="110" height="46" rx="4" fill="#8FD19E" stroke="#333"/><text x="28" y="66" font-size="11" font-weight="650" font-family="Manrope,sans-serif" fill="#000">цікаво</text><rect x="287" y="44" width="112" height="38" rx="3" fill="#7A1F3D" stroke="#333"/><text x="295" y="78" font-size="11" font-weight="650" font-family="Manrope,sans-serif" fill="#fff">необхідно</text><rect x="6" y="10" width="110" height="46" rx="4" fill="white" stroke="#244bdb" stroke-width="2"/><rect x="273" y="30" width="112" height="38" rx="3" fill="white" stroke="#8c8c8c"/><g font-size="15" font-family="Manrope,sans-serif" text-anchor="middle"><text x="61" y="39">Навчання</text><text x="328" y="54">Кар’єра</text></g></svg>`;return ''}
+
+/* Контакти автора й форма зв’язку внизу кожної сторінки.
+   Відповідь іде в ту саму Google Таблицю, що й лендінг (аркуш «Відповіді», група «MVP-презентація»).
+   У режимі власника (?me) нічого не надсилається. */
+const CONTACT_ENDPOINT='https://script.google.com/macros/s/AKfycbwK3n_kcmtVz4meZ-8Hw1JNX2TWKXMJi_lQ8Pqp0Q7HlGuV0cG11Cv0HiQI3QVtG9zjYw/exec';
+const AUTHOR_PHONE='093 987 14 91';
+let cform={name:'',contact:'',comment:'',status:'',kind:'',sent:false,sending:false};
+function contactBlock(){
+  const v=k=>E(cform[k]);
+  return `<section class="contactband" aria-labelledby="contact-title"><div class="bound contactgrid">
+    <div class="contact-me">
+      <div class="kicker">Контакти</div>
+      <h2 id="contact-title">Зв’язатися з автором</h2>
+      <p>Андрій Данилюк, автор AboutIAmI.</p>
+      <p class="contact-line">Телефон: <a href="tel:+380939871491">${AUTHOR_PHONE}</a></p>
+      <p class="hint">Або залиш свій контакт у формі, і я напишу тобі сам.</p>
+    </div>
+    <form id="contactform" class="contactform" novalidate>
+      <div class="field"><label for="cf-name">Ім’я</label><input id="cf-name" name="name" type="text" maxlength="120" autocomplete="name" value="${v('name')}"></div>
+      <div class="field"><label for="cf-contact">Контакт: пошта, телефон або Telegram</label><input id="cf-contact" name="contact" type="text" maxlength="160" autocomplete="email" value="${v('contact')}"></div>
+      <div class="field"><label for="cf-comment">Коментар</label><textarea id="cf-comment" name="comment" rows="3" maxlength="2000">${v('comment')}</textarea></div>
+      <div class="hp" aria-hidden="true"><label for="cf-website">Не заповнюй це поле</label><input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+      <div class="contact-send"><button class="button primary" type="submit" ${cform.sent||cform.sending?'disabled':''}>${cform.sent?'Надіслано':'Надіслати'}</button><p class="cf-status ${cform.kind}" role="status" aria-live="polite">${E(cform.status)}</p></div>
+    </form>
+  </div></section>`;
+}
+function cfStatus(text,kind){cform.status=text;cform.kind=kind||'';const s=$('.cf-status');if(s){s.textContent=text;s.className='cf-status '+cform.kind}}
+document.addEventListener('input',e=>{const f=e.target.closest?.('#contactform');if(f&&['name','contact','comment'].includes(e.target.name))cform[e.target.name]=e.target.value});
+document.addEventListener('submit',e=>{
+  if(e.target.id!=='contactform')return;e.preventDefault();
+  if(cform.sent||cform.sending)return;
+  const f=e.target,name=f.name.value.trim(),contact=f.contact.value.trim(),comment=f.comment.value.trim();
+  if(name.length<2){f.name.focus();cfStatus('Напиши, як до тебе звертатися.','bad');return}
+  if(contact.length<3){f.contact.focus();cfStatus('Залиш контакт, щоб я міг відповісти.','bad');return}
+  let owner=false;try{owner=localStorage.getItem('aia_owner')==='1'}catch(_){}
+  const btnEl=f.querySelector('button[type=submit]');
+  const done=()=>{cform.sent=true;cform.sending=false;btnEl.disabled=true;btnEl.textContent='Надіслано'};
+  if(owner){done();cfStatus('Режим власника: нічого не надіслано.','ok');return}
+  let tag='';try{tag=(new URLSearchParams(location.search).get('to')||'').slice(0,60)}catch(_){}
+  const body={group:'MVP-презентація'+(tag?' · '+tag:''),name,contact:/^[+\d][\d\s()\-]*$/.test(contact)?"'"+contact:contact,interview:'',comment:comment+(comment?' ':'')+'[з розділу: '+(location.hash.slice(1)||'main')+']',framing:'',start:'',values:'',work:'',workAI:'',have:'',haveText:'',stops:'',close:'',useful:'',payHow:'',payMonth:'',payYear:'',steps:'',vote:'',website:f.website.value};
+  cform.sending=true;btnEl.disabled=true;cfStatus('Надсилаю…','');
+  fetch(CONTACT_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)})
+    .then(r=>r.json()).then(res=>{if(!res||!res.ok)throw new Error('not ok');done();cform.name=cform.contact=cform.comment='';cfStatus('Дякую! Повідомлення в мене, відповім найближчим часом.','ok')})
+    .catch(()=>{cform.sending=false;btnEl.disabled=false;cfStatus('Не вдалося надіслати. Перевір інтернет або подзвони за номером зліва.','bad')});
+});
 
 let formCallback=null;const closeModal=(restore=true)=>{modal.replaceChildren();formCallback=null;document.body.style.overflow='';if(restore&&modalFocus?.isConnected)modalFocus.focus();modalFocus=null};
 function openDialog(title,html,submit,saveLabel='Зберегти'){
