@@ -626,6 +626,12 @@ function contactBlock(){
       <h2 id="contact-title">Зв’язатися з автором</h2>
       <p>Андрій Данилюк, автор AboutIAmI.</p>
       <p class="contact-line">Телефон: <a href="tel:+380939871491">${AUTHOR_PHONE}</a></p>
+      <p class="msgr-label">Написати в месенджер:</p>
+      <div class="msgr">
+        <a class="msgr-btn" href="viber://chat?number=%2B380939871491"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Viber</a>
+        <a class="msgr-btn" href="https://t.me/+380939871491" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Telegram</a>
+        <a class="msgr-btn" href="https://wa.me/380939871491" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>WhatsApp</a>
+      </div>
       <p class="hint">Або залиш свій контакт у формі, і я напишу тобі сам.</p>
     </div>
     <form id="contactform" class="contactform" novalidate>
