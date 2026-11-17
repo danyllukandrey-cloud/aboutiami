@@ -56,6 +56,10 @@
 .presentation-intro .hero .slide-heading { font-size:clamp(43px,4.9vw,72px);line-height:1.07;letter-spacing:-.066em;font-weight:650;margin:22px 0; }
 .presentation-intro .hero .slide-heading em { font-style:normal;color:var(--blue); }
 .presentation-intro .dock { margin-top:32px; }
+@media(min-width:768px) and (min-height:500px) {
+  .presentation-intro .hero { flex:1;align-content:center;padding-block:32px; }
+  .presentation-intro .hero p { max-width:64ch;font-size:clamp(17px,1.45vw,21px); }
+}
 .intro-direction { margin:0;color:#000; }
 .intro-direction > span { color:var(--blue); }
 .presentation-intro .about p+p { margin-top:16px; }
