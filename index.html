@@ -139,6 +139,12 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
 .page-intro h2{font-size:24px;line-height:1.35;font-weight:700}
 .page-intro p{margin-top:8px;font-size:18px;line-height:1.55;color:var(--muted)}
 .build-head h2{color:var(--accent)}
+.top nav{margin-left:auto}
+@media (max-width:640px){.top .lang{order:-1;margin-left:auto}.top .logo{order:-2}.top nav{order:1;margin-left:0}}
+.lang{display:inline-flex;border:1px solid var(--line-strong);border-radius:10px;overflow:hidden}
+.lang button{min-height:44px;min-width:48px;padding:0 12px;border:0;background:var(--bg);color:var(--ink);font:600 15px/1 var(--font);cursor:pointer}
+.lang button+button{border-left:1px solid var(--line-strong)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#FFFFFF}
 @media(max-width:640px){.page-intro .wrap{padding-block:24px}.page-intro h2{font-size:22px}}
 </style>
 
@@ -148,102 +154,103 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
   <div class="wrap">
     <a class="logo" href="#top">AboutIAmI</a>
     <nav aria-label="Розділи сторінки">
-      <a href="#idea">Ідея</a>
-      <a href="#build">Збери свій</a>
-      <a class="btn small" href="#send">Ранній доступ</a>
+      <a href="#idea" data-i18n="nav.idea">Ідея</a>
+      <a href="#build" data-i18n="nav.build">Збери свій</a>
+      <a class="btn small" href="#send" data-i18n="nav.early">Ранній доступ</a>
     </nav>
+    <div class="lang" role="group" aria-label="Мова · Language"><button type="button" data-lang="uk" aria-pressed="true">UA</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
   </div>
 </header>
 
 <main id="top">
   <section class="page-intro" aria-labelledby="invitation-title">
     <div class="wrap">
-      <h2 id="invitation-title">Допоможи нам створити зручний для тебе продукт.</h2>
-      <p>Прочитай про сервіс та збери свій AboutIAmI нижче.</p>
+      <h2 id="invitation-title" data-i18n="intro.h">Допоможи створити зручний для тебе продукт.</h2>
+      <p data-i18n="intro.p">Прочитай про сервіс та збери свій AboutIAmI нижче.</p>
     </div>
   </section>
 
   <section class="hero">
     <div class="wrap">
       <div class="hero-main">
-        <p class="eyebrow">Запуск — зовсім скоро</p>
-        <h1><span>Сервіс для думаючих людей</span>Працюй над собою з ШІ</h1>
-        <p class="lead">З AboutIAmI ти складеш план руху вперед, осмислиш важливі сфери життя, сформулюєш власну картину світу.</p>
-        <p class="lead">ШІ буде твоїм аналітиком, радником і помічником у роботі над собою.</p>
+        <p class="eyebrow" data-i18n="hero.eyebrow">Запуск — зовсім скоро</p>
+        <h1 data-i18n-html="hero.h1"><span>Сервіс для думаючих людей</span>Працюй над собою з ШІ</h1>
+        <p class="lead" data-i18n="hero.lead1">З AboutIAmI ти складеш план руху вперед, осмислиш важливі сфери життя, сформулюєш власну картину світу.</p>
+        <p class="lead" data-i18n="hero.lead2">ШІ буде твоїм аналітиком, радником і помічником у роботі над собою.</p>
       </div>
     </div>
   </section>
 
   <section class="idea" id="idea">
     <div class="wrap">
-      <h2>Твій помічник ШІ-Агент</h2>
-      <div class="idea-text"><p>Агент познайомить тебе із застосунком, допоможе продумати плани, описати важливі сфери життя та знайти точні слова для опису цінностей і картини світу.</p><p>Агент використовуватиме твої записи, плани й показники, щоб краще розуміти тебе. На їхній основі він готуватиме аналітику, допомагатиме помічати розбіжності між намірами та діями й утримувати фокус на важливому.</p><p>Ти обговорюєш із ним висновки та можливі наступні кроки й ухвалюєш власні рішення.</p></div>
+      <h2 data-i18n="idea.h">Твій помічник ШІ-Агент</h2>
+      <div class="idea-text"><p data-i18n="idea.p1">Агент познайомить тебе із застосунком, допоможе продумати плани, описати важливі сфери життя та знайти точні слова для опису цінностей і картини світу.</p><p data-i18n="idea.p2">Агент використовуватиме твої записи, плани й показники, щоб краще розуміти тебе. На їхній основі він готуватиме аналітику, допомагатиме помічати розбіжності між намірами та діями й утримувати фокус на важливому.</p><p data-i18n="idea.p3">Ти обговорюєш із ним висновки та можливі наступні кроки й ухвалюєш власні рішення.</p></div>
     </div>
   </section>
 
   <section class="build" id="build">
     <div class="wrap">
-      <div class="build-head"><h2>Збери свій AboutIAmI</h2><p>Пройди сім коротких кроків і вибери відповіді.</p><p>Усе займе близько 3 хвилин.</p></div>
+      <div class="build-head"><h2 data-i18n="build.h">Збери свій AboutIAmI</h2><p data-i18n="build.p1">Пройди сім коротких кроків і вибери відповіді.</p><p data-i18n="build.p2">Усе займе близько 3 хвилин.</p></div>
       <div class="cols">
         <div class="steps">
 
           <div class="step">
-            <div><p class="step-k">Крок 1 · одна відповідь</p><h3>Що тобі ближче, щоб почати роботу над собою?</h3></div>
+            <div><p class="step-k" data-i18n="s1.k">Крок 1 · одна відповідь</p><h3 data-i18n="s1.q">Що тобі ближче, щоб почати роботу над собою?</h3></div>
             <div class="cards" role="group" aria-label="Що тобі ближче" id="g-framing"></div>
             <div class="desc" id="framing-desc" hidden><p id="fd1"></p><p class="muted" id="fd2"></p></div>
           </div>
 
           <div class="step">
-            <div><p class="step-k">Крок 2 · одна відповідь</p><h3>Наш сервіс має сім вкладок. З якої ти хотів би почати?</h3></div>
+            <div><p class="step-k" data-i18n="s2.k">Крок 2 · одна відповідь</p><h3 data-i18n="s2.q">Наш сервіс має сім вкладок. З якої ти хотів би почати?</h3></div>
             <div class="cards" role="group" aria-label="Вкладка для старту" id="g-start"></div>
           </div>
 
           <div class="step">
-            <div><p class="step-k">Крок 3 · до трьох відповідей</p><h3>Що з цих семи для тебе найцінніше?</h3></div>
+            <div><p class="step-k" data-i18n="s3.k">Крок 3 · до трьох відповідей</p><h3 data-i18n="s3.q">Що з цих семи для тебе найцінніше?</h3></div>
             <div class="chips" role="group" aria-label="Найцінніше" id="g-values"></div>
-            <p class="hint">Обрано <span id="values-count">0</span> з 3</p>
+            <p class="hint" data-i18n-html="s3.count">Обрано <span id="values-count">0</span> з 3</p>
           </div>
 
           <div class="step">
-            <div><p class="step-k">Крок 4 · про тебе зараз</p><h3>Чи працюєш ти над собою?</h3></div>
+            <div><p class="step-k" data-i18n="s4.k">Крок 4 · про тебе зараз</p><h3 data-i18n="s4.q">Чи працюєш ти над собою?</h3></div>
             <div class="chips" role="group" aria-label="Чи працюєш над собою" id="g-work"></div>
-            <h3 class="sub">Чи працюєш над собою з ШІ?</h3>
+            <h3 class="sub" data-i18n="s4.qai">Чи працюєш над собою з ШІ?</h3>
             <div class="chips" role="group" aria-label="Чи працюєш над собою з ШІ" id="g-workai"></div>
-            <h3 class="sub">Для чого з цього в тебе вже є сервіс або своя система?</h3>
+            <h3 class="sub" data-i18n="s4.qhave">Для чого з цього в тебе вже є сервіс або своя система?</h3>
             <div class="group">
               <div class="chips" role="group" aria-label="Для чого вже є сервіс" id="g-have"></div>
-              <p class="hint">Можна вибрати кілька відповідей або «Немає».</p>
+              <p class="hint" data-i18n="s4.hint">Можна вибрати кілька відповідей або «Немає».</p>
             </div>
             <div class="field">
-              <label for="have-text" class="hint" style="font-weight:600;color:var(--ink)">Якими саме сервісами користуєшся? Необов’язково</label>
-              <input class="plain-input" id="have-text" type="text" maxlength="300" placeholder="Наприклад: Notion для плану, Strava для спорту" autocomplete="off">
+              <label for="have-text" class="hint" style="font-weight:600;color:var(--ink)" data-i18n="s4.textl">Якими саме сервісами користуєшся? Необов’язково</label>
+              <input class="plain-input" id="have-text" type="text" maxlength="300" data-i18n-ph="s4.textph" placeholder="Наприклад: Notion для плану, Strava для спорту" autocomplete="off">
             </div>
           </div>
 
           <div class="step">
-            <div><p class="step-k">Крок 5 · ідея</p><h3>Наскільки тобі близька ідея роботи над собою з ШІ?</h3></div>
+            <div><p class="step-k" data-i18n="s5.k">Крок 5 · ідея</p><h3 data-i18n="s5.q1">Наскільки тобі близька ідея роботи над собою з ШІ?</h3></div>
             <div class="group">
               <div class="chips" role="group" aria-label="Близькість ідеї від 1 до 5" id="g-close"></div>
-              <p class="hint">1 — «зовсім не моє», 5 — «хочу вже»</p>
+              <p class="hint" data-i18n="s5.h1">1 — «зовсім не моє», 5 — «хочу вже»</p>
             </div>
-            <h3>Наскільки корисним для тебе був би такий сервіс?</h3>
+            <h3 data-i18n="s5.q2">Наскільки корисним для тебе був би такий сервіс?</h3>
             <div class="group">
               <div class="chips" role="group" aria-label="Корисність сервісу від 1 до 5" id="g-useful"></div>
-              <p class="hint">1 — «зовсім не корисним», 5 — «дуже корисним»</p>
+              <p class="hint" data-i18n="s5.h2">1 — «зовсім не корисним», 5 — «дуже корисним»</p>
             </div>
           </div>
 
           <div class="step">
-            <div><p class="step-k">Крок 6 · оплата</p><h3>Як тобі зручніше платити?</h3></div>
+            <div><p class="step-k" data-i18n="s6.k">Крок 6 · оплата</p><h3 data-i18n="s6.q1">Як тобі зручніше платити?</h3></div>
             <div class="chips" role="group" aria-label="Як зручніше платити" id="g-payhow"></div>
-            <h3 class="sub">Скільки ти готовий платити на місяць?</h3>
+            <h3 class="sub" data-i18n="s6.q2">Скільки ти готовий платити на місяць?</h3>
             <div class="chips" role="group" aria-label="Скільки на місяць" id="g-paymonth"></div>
-            <h3 class="sub">Скільки ти готовий платити на рік?</h3>
+            <h3 class="sub" data-i18n="s6.q3">Скільки ти готовий платити на рік?</h3>
             <div class="chips" role="group" aria-label="Скільки на рік" id="g-payyear"></div>
           </div>
 
           <div class="step">
-            <div><p class="step-k">Крок 7 · кілька відповідей</p><h3>Що могло б тебе зупинити?</h3></div>
+            <div><p class="step-k" data-i18n="s7.k">Крок 7 · кілька відповідей</p><h3 data-i18n="s7.q">Що могло б тебе зупинити?</h3></div>
             <div class="chips" role="group" aria-label="Що могло б зупинити" id="g-stops"></div>
           </div>
 
@@ -251,20 +258,20 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
 
         <aside class="mine" aria-label="Твій варіант">
           <div>
-            <p class="label" style="margin-bottom:6px">Твій варіант · <span id="done-count">0</span> з 7 кроків</p>
-            <h3>AboutIAmI: робота над собою з ШІ — <span id="sum-framing" style="color:var(--accent)">…</span></h3>
+            <p class="label" style="margin-bottom:6px" data-i18n-html="sum.label">Твій варіант · <span id="done-count">0</span> з 7 кроків</p>
+            <h3 data-i18n-html="sum.title">AboutIAmI: робота над собою з ШІ — <span id="sum-framing" style="color:var(--accent)">…</span></h3>
           </div>
           <dl>
-            <div><dt>Починаєш з</dt><dd id="sum-start">—</dd></div>
-            <div><dt>Найцінніше</dt><dd id="sum-values">—</dd></div>
-            <div><dt>Працюєш над собою · з ШІ</dt><dd id="sum-work">—</dd></div>
-            <div><dt>Вже є сервіс або своя система для</dt><dd id="sum-have">—</dd></div>
-            <div><dt>Сервіси, якими користуєшся</dt><dd id="sum-havetext">—</dd></div>
-            <div><dt>Ідея близька · сервіс корисний</dt><dd id="sum-scales">—</dd></div>
-            <div><dt>Оплата</dt><dd id="sum-pay">—</dd></div>
-            <div><dt>Може зупинити</dt><dd id="sum-stops">—</dd></div>
+            <div><dt data-i18n="sum.start">Починаєш з</dt><dd id="sum-start">—</dd></div>
+            <div><dt data-i18n="sum.values">Найцінніше</dt><dd id="sum-values">—</dd></div>
+            <div><dt data-i18n="sum.work">Працюєш над собою · з ШІ</dt><dd id="sum-work">—</dd></div>
+            <div><dt data-i18n="sum.have">Вже є сервіс або своя система для</dt><dd id="sum-have">—</dd></div>
+            <div><dt data-i18n="sum.havetext">Сервіси, якими користуєшся</dt><dd id="sum-havetext">—</dd></div>
+            <div><dt data-i18n="sum.scales">Ідея близька · сервіс корисний</dt><dd id="sum-scales">—</dd></div>
+            <div><dt data-i18n="sum.pay">Оплата</dt><dd id="sum-pay">—</dd></div>
+            <div><dt data-i18n="sum.stops">Може зупинити</dt><dd id="sum-stops">—</dd></div>
           </dl>
-          <a class="btn" href="#send">Надіслати свій варіант</a>
+          <a class="btn" href="#send" data-i18n="sum.btn">Надіслати свій варіант</a>
         </aside>
       </div>
     </div>
@@ -275,45 +282,45 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
       <form class="send-all" id="send-form" novalidate>
       <div class="send-top">
         <div class="send-intro">
-          <h2>Надішли свій варіант</h2>
-          <p>Залиш ім’я і контакт: так ми зрозуміємо, чия це відповідь, повідомимо про старт і дамо ранній доступ.</p>
+          <h2 data-i18n="send.h">Надішли свій варіант</h2>
+          <p data-i18n="send.p">Залиш ім’я і контакт: так ми зрозуміємо, чия це відповідь, повідомимо про старт і дамо ранній доступ.</p>
         </div>
         <div class="fields">
           <div class="field">
-            <label for="name">Ім’я</label>
+            <label for="name" data-i18n="send.name">Ім’я</label>
             <input id="name" type="text" maxlength="120" autocomplete="name" aria-describedby="name-err">
-            <span class="err" id="name-err" hidden>Напиши, як до тебе звертатися.</span>
+            <span class="err" id="name-err" data-i18n="send.nameerr" hidden>Напиши, як до тебе звертатися.</span>
           </div>
           <div class="field">
-            <label for="contact">Контакт: пошта, телефон або Telegram</label>
-            <input id="contact" type="text" maxlength="160" placeholder="ти@приклад.com" autocomplete="email" aria-describedby="contact-err">
-            <span class="err" id="contact-err" hidden>Залиш контакт, щоб ми могли з тобою зв’язатися.</span>
+            <label for="contact" data-i18n="send.contact">Контакт: пошта, телефон або Telegram</label>
+            <input id="contact" type="text" maxlength="160" placeholder="ти@приклад.com" data-i18n-ph="send.contactph" autocomplete="email" aria-describedby="contact-err">
+            <span class="err" id="contact-err" data-i18n="send.contacterr" hidden>Залиш контакт, щоб ми могли з тобою зв’язатися.</span>
           </div>
           <label class="check" for="interview">
             <input id="interview" type="checkbox">
-            <span>Готовий(-а) на коротке інтерв’ю, 15–20 хвилин</span>
+            <span data-i18n="send.interview">Готовий(-а) на коротке інтерв’ю, 15–20 хвилин</span>
           </label>
           <div class="field">
-            <label for="comment">Коментар</label>
+            <label for="comment" data-i18n="send.comment">Коментар</label>
             <textarea id="comment" rows="3" maxlength="2000"></textarea>
           </div>
-          <div class="hp" aria-hidden="true"><label for="website">Не заповнюй це поле</label><input id="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <div class="hp" aria-hidden="true"><label for="website" data-i18n="send.hp">Не заповнюй це поле</label><input id="website" type="text" tabindex="-1" autocomplete="off"></div>
         </div>
       </div>
 
       <div class="pay">
-        <h2>Проголосуй гривнею <span class="opt">(необов’язково)</span></h2>
-        <p>Якщо вважаєш AboutIAmI важливим — підтримай його передоплатою. Для нас це найчесніший спосіб зрозуміти, чи справді ідея потрібна. Сума — на твій розсуд, навіть символічна.</p>
-        <div id="pay-start"><button class="btn light" type="button" id="pay-open">Підтримати передоплатою</button></div>
+        <h2 data-i18n-html="pay.h">Проголосуй гривнею <span class="opt">(необов’язково)</span></h2>
+        <p data-i18n="pay.p">Якщо вважаєш AboutIAmI важливим — підтримай його передоплатою. Для нас це найчесніший спосіб зрозуміти, чи справді ідея потрібна. Сума — на твій розсуд, навіть символічна.</p>
+        <div id="pay-start"><button class="btn light" type="button" id="pay-open" data-i18n="pay.open">Підтримати передоплатою</button></div>
         <div class="pay-form" id="pay-form" hidden>
           <div class="field">
-            <label for="pay-amount">Сума, грн</label>
+            <label for="pay-amount" data-i18n="pay.amount">Сума, грн</label>
             <input id="pay-amount" type="text" inputmode="numeric" maxlength="7" autocomplete="off" aria-describedby="pay-err">
-            <span class="err" id="pay-err" hidden>Вкажи суму в гривнях — число більше нуля.</span>
+            <span class="err" id="pay-err" data-i18n="pay.err" hidden>Вкажи суму в гривнях — число більше нуля.</span>
           </div>
-          <div><button class="btn light" type="button" id="pay-go">Оплатити</button></div>
+          <div><button class="btn light" type="button" id="pay-go" data-i18n="pay.go">Оплатити</button></div>
         </div>
-        <p class="pay-thanks" id="pay-thanks" role="status" hidden>Дякуємо! Ваша спроба оплатити зарахована як голос гривнею! Гроші не списано.</p>
+        <p class="pay-thanks" id="pay-thanks" role="status" data-i18n="pay.thanks" hidden>Дякуємо! Ваша спроба оплатити зарахована як голос гривнею! Гроші не списано.</p>
       </div>
 
       <div class="send-row">
@@ -343,7 +350,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
     TERMS_URL: '',    // угода користувача
     PRIVACY_URL: '',  // політика конфіденційності
     REFUND_URL: '',   // повернення коштів
-    CONTACT: 'тел. 0939871491'   // контакт у підвалі
+    PHONE: '0939871491'   // контакт у підвалі
   };
 
   /* Режим власника: відкрий сайт з ?me — і з цього браузера нічого не надсилається (ні відповіді, ні голоси).
@@ -357,6 +364,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
   })();
   if (OWNER) {
     var ob = document.createElement('div');
+    ob.id = 'owner-badge';
     ob.textContent = 'Режим власника: нічого не надсилається';
     ob.setAttribute('style', 'position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;padding:6px 10px;border-radius:6px;background:#7a1f3d;color:#fff;font:600 12px/1.3 system-ui,sans-serif;pointer-events:none');
     document.body.appendChild(ob);
@@ -365,43 +373,166 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
   /* Мітка групи в посиланні: …/#friends або …/?g=friends */
   var GROUPS = { friends: 'Друзі та близькі', target: 'Цільова аудиторія', general: 'Загальна вибірка', investors: 'Інвестори і партнери' };
 
+  /* ---------- Мова: українська за замовчуванням; …/?lang=en відкриває англійську; вибір запамʼятовується в браузері ---------- */
+  var LANG = (function () {
+    var l = '';
+    try { l = (new URLSearchParams(location.search).get('lang') || '').toLowerCase(); } catch (e) {}
+    if (l === 'uk' || l === 'en') { try { localStorage.setItem('aboutiami-lang', l); } catch (e) {} return l; }
+    try { l = localStorage.getItem('aboutiami-lang') || ''; } catch (e) { l = ''; }
+    return l === 'en' ? 'en' : 'uk';
+  })();
+
+  /* Англійські тексти сторінки. Українські беруться зі сторінки як є і не дублюються тут. */
+  var EN = {
+    'nav.idea': 'Idea', 'nav.build': 'Build yours', 'nav.early': 'Early access',
+    'intro.h': 'Help build a product that works for you.',
+    'intro.p': 'Read about the service and build your own AboutIAmI below.',
+    'hero.eyebrow': 'Launching very soon',
+    'hero.h1': '<span>A service for thoughtful people</span>Work on yourself with AI',
+    'hero.lead1': 'With AboutIAmI you’ll make a plan for moving forward, make sense of the important areas of your life and put your own worldview into words.',
+    'hero.lead2': 'AI will be your analyst, advisor and assistant as you work on yourself.',
+    'idea.h': 'Your AI Agent assistant',
+    'idea.p1': 'The agent will introduce you to the app and help you think through plans, describe the important areas of your life and find the right words for your values and worldview.',
+    'idea.p2': 'The agent will use your notes, plans and metrics to understand you better. Based on them, it will prepare analytics, help you notice gaps between your intentions and actions, and keep your focus on what matters.',
+    'idea.p3': 'You discuss its conclusions and possible next steps with it, and make your own decisions.',
+    'build.h': 'Build your AboutIAmI',
+    'build.p1': 'Go through seven short steps and choose your answers.',
+    'build.p2': 'It all takes about 3 minutes.',
+    's1.k': 'Step 1 · one answer', 's1.q': 'What feels closest to you as a way to start working on yourself?',
+    's2.k': 'Step 2 · one answer', 's2.q': 'Our service has seven tabs. Which one would you like to start with?',
+    's3.k': 'Step 3 · up to three answers', 's3.q': 'Which of these seven matter most to you?',
+    's3.count': 'Selected <span id="values-count">0</span> of 3',
+    's4.k': 'Step 4 · about you now', 's4.q': 'Do you work on yourself?',
+    's4.qai': 'Do you work on yourself with AI?',
+    's4.qhave': 'Which of these do you already have a service or your own system for?',
+    's4.hint': 'You can choose several answers or “None”.',
+    's4.textl': 'Which services exactly do you use? Optional',
+    's4.textph': 'For example: Notion for planning, Strava for sport',
+    's5.k': 'Step 5 · the idea', 's5.q1': 'How close is the idea of working on yourself with AI to you?',
+    's5.h1': '1 — “not for me at all”, 5 — “I want it now”',
+    's5.q2': 'How useful would such a service be for you?',
+    's5.h2': '1 — “not useful at all”, 5 — “very useful”',
+    's6.k': 'Step 6 · payment', 's6.q1': 'How would you prefer to pay?',
+    's6.q2': 'How much are you willing to pay per month?',
+    's6.q3': 'How much are you willing to pay per year?',
+    's7.k': 'Step 7 · several answers', 's7.q': 'What might stop you?',
+    'sum.label': 'Your version · <span id="done-count">0</span> of 7 steps',
+    'sum.title': 'AboutIAmI: working on yourself with AI — <span id="sum-framing" style="color:var(--accent)">…</span>',
+    'sum.start': 'Starting with', 'sum.values': 'Matters most', 'sum.work': 'Work on yourself · with AI',
+    'sum.have': 'Already have a service or own system for', 'sum.havetext': 'Services you use',
+    'sum.scales': 'Idea feels close · service is useful', 'sum.pay': 'Payment', 'sum.stops': 'Might stop you',
+    'sum.btn': 'Send your version',
+    'send.h': 'Send your version',
+    'send.p': 'Leave your name and contact: this way we’ll know whose answer it is, let you know about the launch and give you early access.',
+    'send.name': 'Name', 'send.nameerr': 'Tell us what to call you.',
+    'send.contact': 'Contact: email, phone or Telegram', 'send.contactph': 'you@example.com',
+    'send.contacterr': 'Leave a contact so we can reach you.',
+    'send.interview': 'Ready for a short interview, 15–20 minutes',
+    'send.comment': 'Comment', 'send.hp': 'Do not fill in this field',
+    'pay.h': 'Vote with your money <span class="opt">(optional)</span>',
+    'pay.p': 'If you think AboutIAmI matters, support it with a prepayment. For us, it’s the most honest way to find out whether the idea is really needed. The amount is up to you, even a symbolic one.',
+    'pay.open': 'Support with a prepayment', 'pay.amount': 'Amount, UAH',
+    'pay.err': 'Enter an amount in hryvnias — a number greater than zero.', 'pay.go': 'Pay',
+    'pay.thanks': 'Thank you! Your payment attempt has been counted as a vote with your money! No money has been charged.'
+  };
+
+  /* Тексти, які скрипт ставить сам */
+  var STR = {
+    uk: { title: 'Збери свій AboutIAmI', desc: 'AboutIAmI — сервіс роботи над собою з ШІ. Збери свій варіант за 3 хвилини.',
+          send: 'Надіслати', sent: 'Надіслано', sending: 'Надсилаємо…',
+          ok: 'Дякуємо! Твій варіант у нас.', fail: 'Не вдалося надіслати. Перевір інтернет і натисни ще раз.',
+          noEndpoint: 'Запис відповідей ще не підключено: цю відповідь не збережено.',
+          owner: 'Режим власника: відповідь нікуди не надіслано.',
+          perMonth: ' на місяць', perYear: ' на рік',
+          terms: 'Угода користувача', privacy: 'Політика конфіденційності', refund: 'Повернення коштів',
+          contacts: 'Контакти: тел. ' },
+    en: { title: 'Build your AboutIAmI', desc: 'AboutIAmI — a service for working on yourself with AI. Build your version in 3 minutes.',
+          send: 'Send', sent: 'Sent', sending: 'Sending…',
+          ok: 'Thank you! We’ve got your version.', fail: 'Couldn’t send. Check your internet connection and press again.',
+          noEndpoint: 'Saving answers isn’t connected yet: this answer was not saved.',
+          owner: 'Owner mode: the answer was not sent anywhere.',
+          perMonth: ' per month', perYear: ' per year',
+          terms: 'Terms of use', privacy: 'Privacy policy', refund: 'Refunds',
+          contacts: 'Contacts: tel. ' }
+  };
+  var s = function (key) { return STR[LANG][key]; };
+
+  /* Варіанти відповідей: uk — те, що записується в таблицю (однаково для обох мов), en — що бачить англомовна людина */
   var FRAMINGS = [
-    { id: 'focus', label: 'План та утримання фокусу на важливому.',
-      question: ['Створення плану, аналіз утримання фокусу та ефективності досягнення цілей.'],
-      d1: 'Ми створюємо AboutIAmI, щоб допомогти тобі визначати власні пріоритети й тримати їх у полі зору. Тут ти описуєш, хто ти й куди хочеш рухатися, визначаєш важливі сфери життя та складаєш план від найближчих кроків до далеких цілей.',
-      d2: 'ШІ допомагає зібрати це в цілісну картину й за твоїми записами побачити, як щоденні дії відповідають тому, що ти вважаєш важливим. Ти осмислюєш свій рух і вирішуєш, на чому зосередитися далі.' },
-    { id: 'spheres', label: 'Важливі сфери життя в одній картині',
-      question: ['Наприклад: здоров’я, кар’єра, навчання…', 'Що відбувається в кожній важливій тобі сфері та як вони пов’язані між собою.'],
-      d1: 'Ми створюємо AboutIAmI, де ти збираєш ці сфери в одну картину, визначаєш їхні пріоритети, ставиш цілі та ведеш план від найближчих кроків до далеких задумів. Основою стає твоє бачення себе: хто ти, що для тебе важливо й куди хочеш рухатися.',
-      d2: 'ШІ допомагає осмислювати ці зв’язки та за твоїми записами зіставляти наміри з діями й результатами. Ти бачиш зміни та вирішуєш, які сфери потребують уваги.' },
-    { id: 'who', label: 'Хто я і куди йду',
-      question: ['Як ти бачиш себе і світ? На що спираєшся у своїх рішеннях і який шлях хочеш обрати?'],
-      d1: 'Ми створюємо AboutIAmI, де ти формулюєш власну декларацію: свій світогляд, цінності й напрям руху. Пов’язуєш це з важливими сферами життя, визначаєш пріоритети та складаєш план від найближчих кроків до далеких цілей.',
-      d2: 'ШІ допомагає уточнювати думки й за твоїми записами досліджувати, як твоє бачення проявляється в діях і результатах. З досвідом ти можеш переглядати свої переконання, уточнювати план і повертати увагу до важливого.' }
+    { id: 'focus',
+      label: { uk: 'План та утримання фокусу на важливому.', en: 'A plan and keeping your focus on what matters.' },
+      question: { uk: ['Створення плану, аналіз утримання фокусу та ефективності досягнення цілей.'],
+                  en: ['Creating a plan, analysing how well you keep your focus and how effectively you reach your goals.'] },
+      d1: { uk: 'Ми створюємо AboutIAmI, щоб допомогти тобі визначати власні пріоритети й тримати їх у полі зору. Тут ти описуєш, хто ти й куди хочеш рухатися, визначаєш важливі сфери життя та складаєш план від найближчих кроків до далеких цілей.',
+            en: 'We are building AboutIAmI to help you set your own priorities and keep them in sight. Here you describe who you are and where you want to go, define the important areas of your life and make a plan from the nearest steps to distant goals.' },
+      d2: { uk: 'ШІ допомагає зібрати це в цілісну картину й за твоїми записами побачити, як щоденні дії відповідають тому, що ти вважаєш важливим. Ти осмислюєш свій рух і вирішуєш, на чому зосередитися далі.',
+            en: 'AI helps bring this together into a whole picture and, from your notes, see how your daily actions match what you consider important. You reflect on your progress and decide what to focus on next.' } },
+    { id: 'spheres',
+      label: { uk: 'Важливі сфери життя в одній картині', en: 'The important areas of your life in one picture' },
+      question: { uk: ['Наприклад: здоров’я, кар’єра, навчання…', 'Що відбувається в кожній важливій тобі сфері та як вони пов’язані між собою.'],
+                  en: ['For example: health, career, learning…', 'What is happening in each area that matters to you and how they are connected.'] },
+      d1: { uk: 'Ми створюємо AboutIAmI, де ти збираєш ці сфери в одну картину, визначаєш їхні пріоритети, ставиш цілі та ведеш план від найближчих кроків до далеких задумів. Основою стає твоє бачення себе: хто ти, що для тебе важливо й куди хочеш рухатися.',
+            en: 'We are building AboutIAmI, where you bring these areas together into one picture, set their priorities and goals, and keep a plan from the nearest steps to distant ideas. It is grounded in how you see yourself: who you are, what matters to you and where you want to go.' },
+      d2: { uk: 'ШІ допомагає осмислювати ці зв’язки та за твоїми записами зіставляти наміри з діями й результатами. Ти бачиш зміни та вирішуєш, які сфери потребують уваги.',
+            en: 'AI helps you make sense of these connections and, from your notes, compare intentions with actions and results. You see the changes and decide which areas need attention.' } },
+    { id: 'who',
+      label: { uk: 'Хто я і куди йду', en: 'Who I am and where I’m going' },
+      question: { uk: ['Як ти бачиш себе і світ? На що спираєшся у своїх рішеннях і який шлях хочеш обрати?'],
+                  en: ['How do you see yourself and the world? What do you rely on in your decisions, and which path do you want to choose?'] },
+      d1: { uk: 'Ми створюємо AboutIAmI, де ти формулюєш власну декларацію: свій світогляд, цінності й напрям руху. Пов’язуєш це з важливими сферами життя, визначаєш пріоритети та складаєш план від найближчих кроків до далеких цілей.',
+            en: 'We are building AboutIAmI, where you write your own declaration: your worldview, values and direction. You connect it with the important areas of your life, set priorities and make a plan from the nearest steps to distant goals.' },
+      d2: { uk: 'ШІ допомагає уточнювати думки й за твоїми записами досліджувати, як твоє бачення проявляється в діях і результатах. З досвідом ти можеш переглядати свої переконання, уточнювати план і повертати увагу до важливого.',
+            en: 'AI helps you clarify your thoughts and, from your notes, explore how your vision shows up in your actions and results. With experience, you can revisit your beliefs, refine your plan and bring your attention back to what matters.' } }
   ];
   var TABS = [
-    { label: 'Декларація про картину світу та цінності', desc: ['Опиши, як ти бачиш світ, у що віриш і що для тебе важливо.', 'Це допоможе визначити, на що спиратися у рішеннях і виборі цілей.'] },
-    { label: 'Важливі сфери життя', desc: ['Створи картки здоров’я, стосунків, кар’єри та інших важливих сфер із цілями й показниками.', 'Це допоможе бачити стан кожної сфери та розуміти, де потрібна увага.'] },
-    { label: 'План', desc: ['Запиши цілі, кроки та строки: від найближчого тижня до наступних років.', 'Це допоможе перетворити наміри на послідовні дії та відстежувати рух до цілей.'] },
-    { label: 'Схема життєвих пріоритетів', desc: ['Розташуй важливі сфери й цілі на схемі та познач зв’язки між ними.', 'Це допоможе бачити, що для тебе головне і як одні цілі впливають на інші.'] },
-    { label: 'ШІ-агент — твій помічник', desc: ['З агентом складай плани, формулюй цілі, розбирай в аналітиці результати.', 'Це допоможе краще розуміти себе, бачити можливі наступні кроки та ухвалювати рішення.'] },
-    { label: 'Аналітика планів і дій', desc: ['Переглядай, як твої записи, дії та показники співвідносяться з цілями й пріоритетами.', 'Це допоможе помічати прогрес і розбіжності та коригувати план. Для аналізу потрібні дані з інших вкладок.'] },
-    { label: 'Корисні сервіси та посилання', desc: ['Збери потрібні сервіси й посилання для кожної сфери життя.', 'Це допоможе швидко знаходити інструменти для своїх справ: від навчання до подорожей.'] }
+    { label: { uk: 'Декларація про картину світу та цінності', en: 'Declaration of worldview and values' },
+      desc: { uk: ['Опиши, як ти бачиш світ, у що віриш і що для тебе важливо.', 'Це допоможе визначити, на що спиратися у рішеннях і виборі цілей.'],
+              en: ['Describe how you see the world, what you believe in and what matters to you.', 'This will help you decide what to rely on when making decisions and choosing goals.'] } },
+    { label: { uk: 'Важливі сфери життя', en: 'Important areas of life' },
+      desc: { uk: ['Створи картки здоров’я, стосунків, кар’єри та інших важливих сфер із цілями й показниками.', 'Це допоможе бачити стан кожної сфери та розуміти, де потрібна увага.'],
+              en: ['Create cards for health, relationships, career and other important areas, with goals and metrics.', 'This will help you see the state of each area and understand where attention is needed.'] } },
+    { label: { uk: 'План', en: 'Plan' },
+      desc: { uk: ['Запиши цілі, кроки та строки: від найближчого тижня до наступних років.', 'Це допоможе перетворити наміри на послідовні дії та відстежувати рух до цілей.'],
+              en: ['Write down goals, steps and deadlines: from the coming week to the years ahead.', 'This will help turn intentions into consistent actions and track your progress towards your goals.'] } },
+    { label: { uk: 'Схема життєвих пріоритетів', en: 'Life priorities map' },
+      desc: { uk: ['Розташуй важливі сфери й цілі на схемі та познач зв’язки між ними.', 'Це допоможе бачити, що для тебе головне і як одні цілі впливають на інші.'],
+              en: ['Place your important areas and goals on a map and mark the links between them.', 'This will help you see what matters most to you and how some goals affect others.'] } },
+    { label: { uk: 'ШІ-агент — твій помічник', en: 'AI agent — your assistant' },
+      desc: { uk: ['З агентом складай плани, формулюй цілі, розбирай в аналітиці результати.', 'Це допоможе краще розуміти себе, бачити можливі наступні кроки та ухвалювати рішення.'],
+              en: ['Make plans, formulate goals and go through your results in the analytics together with the agent.', 'This will help you understand yourself better, see possible next steps and make decisions.'] } },
+    { label: { uk: 'Аналітика планів і дій', en: 'Analytics of plans and actions' },
+      desc: { uk: ['Переглядай, як твої записи, дії та показники співвідносяться з цілями й пріоритетами.', 'Це допоможе помічати прогрес і розбіжності та коригувати план. Для аналізу потрібні дані з інших вкладок.'],
+              en: ['See how your notes, actions and metrics line up with your goals and priorities.', 'This will help you notice progress and gaps and adjust your plan. The analysis needs data from the other tabs.'] } },
+    { label: { uk: 'Корисні сервіси та посилання', en: 'Useful services and links' },
+      desc: { uk: ['Збери потрібні сервіси й посилання для кожної сфери життя.', 'Це допоможе швидко знаходити інструменти для своїх справ: від навчання до подорожей.'],
+              en: ['Collect the services and links you need for each area of life.', 'This will help you quickly find tools for your tasks: from learning to travel.'] } }
   ];
   var TAB_LABELS = TABS.map(function (t) { return t.label; });
-  var HAVE_NONE = 'Немає';
-  var WORK = ['Так, регулярно', 'Час від часу', 'Ні'];
-  var WORK_AI = ['Так, регулярно', 'Пробував(-ла)', 'Ні'];
-  var STOPS = ['не хочу довіряти ШІ особисте', 'нема часу', 'вже маю свою систему', 'не розумію, навіщо це мені', 'ціна', 'інше'];
-  var PAY_HOW = ['щомісяця', 'раз на рік', 'безкоштовно + оплата за фактичне використання ШІ'];
-  var PAY_MONTH = ['лише безкоштовно', '200–400 грн (5–9$)', '400–800 грн (9–18$)', 'понад 800 грн (понад 18$)'];
-  var PAY_YEAR = ['безкоштовно + оплата за фактичне використання ШІ', 'до 2000 грн (до 50$)', '2000–4000 грн (50–90$)', '4000–8000 грн (90–180$)'];
+  var HAVE_NONE = { uk: 'Немає', en: 'None' };
+  var DONT_KNOW = { uk: 'Не знаю', en: 'Don’t know' };
+  var WORK = [{ uk: 'Так, регулярно', en: 'Yes, regularly' }, { uk: 'Час від часу', en: 'From time to time' }, { uk: 'Ні', en: 'No' }];
+  var WORK_AI = [{ uk: 'Так, регулярно', en: 'Yes, regularly' }, { uk: 'Пробував(-ла)', en: 'I’ve tried' }, { uk: 'Ні', en: 'No' }];
+  var STOPS = [{ uk: 'не хочу довіряти ШІ особисте', en: 'I don’t want to trust AI with personal things' }, { uk: 'нема часу', en: 'no time' },
+               { uk: 'вже маю свою систему', en: 'I already have my own system' }, { uk: 'не розумію, навіщо це мені', en: 'I don’t see why I’d need it' },
+               { uk: 'ціна', en: 'price' }, { uk: 'інше', en: 'other' }];
+  var FREE_USAGE = { uk: 'безкоштовно + оплата за фактичне використання ШІ', en: 'free + pay for actual AI usage' };
+  var PAY_HOW = [{ uk: 'щомісяця', en: 'monthly' }, { uk: 'раз на рік', en: 'once a year' }, FREE_USAGE];
+  var PAY_MONTH = [{ uk: 'лише безкоштовно', en: 'free only' }, { uk: '200–400 грн (5–9$)', en: 'UAH 200–400 ($5–9)' },
+                   { uk: '400–800 грн (9–18$)', en: 'UAH 400–800 ($9–18)' }, { uk: 'понад 800 грн (понад 18$)', en: 'over UAH 800 (over $18)' }];
+  var PAY_YEAR = [FREE_USAGE, { uk: 'до 2000 грн (до 50$)', en: 'up to UAH 2000 (up to $50)' },
+                  { uk: '2000–4000 грн (50–90$)', en: 'UAH 2000–4000 ($50–90)' }, { uk: '4000–8000 грн (90–180$)', en: 'UAH 4000–8000 ($90–180)' }];
 
   var st = { framing: null, start: null, values: [], work: null, workAI: null, have: [], stops: [],
              close: null, useful: null, payHow: null, payMonth: null, payYear: null };
   var sending = false, sent = false, vote = null;
+  var statusKey = '', statusKind = '';
 
   var $ = function (id) { return document.getElementById(id); };
+  /* текст варіанта поточною мовою */
+  var L = function (x) { return (x && typeof x === 'object' && !Array.isArray(x) && 'uk' in x) ? x[LANG] : x; };
+  var key = function (x) { return (x && typeof x === 'object' && 'uk' in x) ? x.uk : x; };
+  var NAMES = {};   // значення з таблиці → назва обома мовами, для підсумку
+  var show = function (v) { return NAMES[v] ? L(NAMES[v]) : String(v); };
 
   /* група з посилання — запамʼятовуємо одразу, бо далі хеш міняють якорі сторінки */
   var group = (function () {
@@ -417,58 +548,64 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
   function makeButtons(hostId, items, cls, isOn, onPick) {
     var host = $(hostId);
     items.forEach(function (item) {
+      NAMES[item.value] = item.label;
       var b = document.createElement('button');
       b.type = 'button';
       b.className = cls;
       b.setAttribute('aria-pressed', 'false');
-      if (cls === 'card') {
-        var s = document.createElement('strong'); s.textContent = item.label; b.appendChild(s);
-        [].concat(item.sub).forEach(function (t) {
-          var d = document.createElement('span'); d.textContent = t; b.appendChild(d);
-        });
-      } else {
-        b.textContent = String(item.label);
-      }
+      b._label = function () {
+        b.textContent = '';
+        if (cls === 'card') {
+          var s = document.createElement('strong'); s.textContent = L(item.label); b.appendChild(s);
+          [].concat(L(item.sub)).forEach(function (t) {
+            var d = document.createElement('span'); d.textContent = t; b.appendChild(d);
+          });
+        } else {
+          b.textContent = String(L(item.label));
+        }
+      };
+      b._label();
       b.addEventListener('click', function () { onPick(item.value); render(); });
       host.appendChild(b);
       b._isOn = function () { return isOn(item.value); };
     });
   }
-  function single(hostId, list, key) {
-    makeButtons(hostId, list.map(function (v) { return { label: v, value: v }; }), 'chip',
-      function (v) { return st[key] === v; },
-      function (v) { st[key] = st[key] === v ? null : v; });
+  function opts(list) { return list.map(function (v) { return { label: v, value: key(v) }; }); }
+  function single(hostId, list, k) {
+    makeButtons(hostId, opts(list), 'chip',
+      function (v) { return st[k] === v; },
+      function (v) { st[k] = st[k] === v ? null : v; });
   }
-  function multi(hostId, list, key, max) {
-    makeButtons(hostId, list.map(function (v) { return { label: v, value: v }; }), 'chip',
-      function (v) { return st[key].indexOf(v) !== -1; },
+  function multi(hostId, list, k, max) {
+    makeButtons(hostId, opts(list), 'chip',
+      function (v) { return st[k].indexOf(v) !== -1; },
       function (v) {
-        var i = st[key].indexOf(v);
-        if (i !== -1) st[key].splice(i, 1);
-        else if (!max || st[key].length < max) st[key].push(v);
+        var i = st[k].indexOf(v);
+        if (i !== -1) st[k].splice(i, 1);
+        else if (!max || st[k].length < max) st[k].push(v);
       });
   }
 
   makeButtons('g-framing', FRAMINGS.map(function (f) { return { label: f.label, sub: f.question, value: f.id }; }), 'card',
     function (v) { return st.framing === v; }, function (v) { st.framing = st.framing === v ? null : v; });
-  makeButtons('g-start', TABS.map(function (t) { return { label: t.label, sub: t.desc, value: t.label }; }), 'card',
+  makeButtons('g-start', TABS.map(function (t) { return { label: t.label, sub: t.desc, value: t.label.uk }; }), 'card',
     function (v) { return st.start === v; }, function (v) { st.start = st.start === v ? null : v; });
   multi('g-values', TAB_LABELS, 'values', 3);
   single('g-work', WORK, 'work');
   single('g-workai', WORK_AI, 'workAI');
   /* «Немає» виключає решту варіантів, і навпаки */
-  makeButtons('g-have', TAB_LABELS.concat([HAVE_NONE]).map(function (v) { return { label: v, value: v }; }), 'chip',
+  makeButtons('g-have', opts(TAB_LABELS.concat([HAVE_NONE])), 'chip',
     function (v) { return st.have.indexOf(v) !== -1; },
     function (v) {
       var i = st.have.indexOf(v);
       if (i !== -1) { st.have.splice(i, 1); return; }
-      if (v === HAVE_NONE) { st.have = [HAVE_NONE]; return; }
-      st.have = st.have.filter(function (x) { return x !== HAVE_NONE; });
+      if (v === HAVE_NONE.uk) { st.have = [HAVE_NONE.uk]; return; }
+      st.have = st.have.filter(function (x) { return x !== HAVE_NONE.uk; });
       st.have.push(v);
     });
   multi('g-stops', STOPS, 'stops', 0);
-  single('g-close', [1, 2, 3, 4, 5, 'Не знаю'], 'close');
-  single('g-useful', [1, 2, 3, 4, 5, 'Не знаю'], 'useful');
+  single('g-close', [1, 2, 3, 4, 5, DONT_KNOW], 'close');
+  single('g-useful', [1, 2, 3, 4, 5, DONT_KNOW], 'useful');
   single('g-payhow', PAY_HOW, 'payHow');
   single('g-paymonth', PAY_MONTH, 'payMonth');
   single('g-payyear', PAY_YEAR, 'payYear');
@@ -478,7 +615,9 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
     return null;
   }
   function payList() {
-    return [st.payHow, st.payMonth ? st.payMonth + ' на місяць' : null, st.payYear ? st.payYear + ' на рік' : null]
+    return [st.payHow ? show(st.payHow) : null,
+            st.payMonth ? show(st.payMonth) + s('perMonth') : null,
+            st.payYear ? show(st.payYear) + s('perYear') : null]
       .filter(function (x) { return x; });
   }
   function doneCount() {
@@ -489,6 +628,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
             st.stops.length > 0]
       .filter(function (x) { return x; }).length;
   }
+  var showAll = function (list) { return list.map(show).join(', '); };
 
   function render() {
     Array.prototype.forEach.call(document.querySelectorAll('.card,.chip'), function (b) {
@@ -496,30 +636,64 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
     });
     var f = framingObj();
     $('framing-desc').hidden = !f;
-    $('fd1').textContent = f ? f.d1 : '';
-    $('fd2').textContent = f ? f.d2 : '';
-    $('sum-framing').textContent = f ? f.label.toLowerCase() : '…';
+    $('fd1').textContent = f ? L(f.d1) : '';
+    $('fd2').textContent = f ? L(f.d2) : '';
+    $('sum-framing').textContent = f ? L(f.label).toLowerCase() : '…';
     $('values-count').textContent = String(st.values.length);
     $('done-count').textContent = String(doneCount());
-    $('sum-start').textContent = st.start || '—';
-    $('sum-values').textContent = st.values.length ? st.values.join(', ') : '—';
-    $('sum-work').textContent = (st.work || '—') + ' · ' + (st.workAI || '—');
-    $('sum-have').textContent = st.have.length ? st.have.join(', ') : '—';
+    $('sum-start').textContent = st.start ? show(st.start) : '—';
+    $('sum-values').textContent = st.values.length ? showAll(st.values) : '—';
+    $('sum-work').textContent = (st.work ? show(st.work) : '—') + ' · ' + (st.workAI ? show(st.workAI) : '—');
+    $('sum-have').textContent = st.have.length ? showAll(st.have) : '—';
     $('sum-havetext').textContent = $('have-text').value.trim() || '—';
     var stops = $('sum-stops');
-    stops.textContent = st.stops.length ? st.stops.join(', ') : '—';
+    stops.textContent = st.stops.length ? showAll(st.stops) : '—';
     stops.className = st.stops.length ? 'warn' : '';
-    var scale = function (v) { return v === null ? '—' : (typeof v === 'number' ? v + '/5' : v); };
+    var scale = function (v) { return v === null ? '—' : (typeof v === 'number' ? v + '/5' : show(v)); };
     $('sum-scales').textContent = scale(st.close) + ' · ' + scale(st.useful);
     var pay = payList();
     $('sum-pay').textContent = pay.length ? pay.join(' · ') : '—';
   }
 
+  /* ---------- Перемикач мови ---------- */
+  var UK = {};   // українські тексти беремо зі сторінки, як вони є
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function (el) { UK[el.getAttribute('data-i18n')] = el.textContent; });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-html]'), function (el) { UK[el.getAttribute('data-i18n-html')] = el.innerHTML; });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-ph]'), function (el) { UK[el.getAttribute('data-i18n-ph')] = el.getAttribute('placeholder'); });
+  var t = function (k) { return LANG === 'en' ? EN[k] : UK[k]; };
+
+  function applyLang() {
+    document.documentElement.lang = LANG;
+    document.title = s('title');
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', s('desc'));
+    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-html]'), function (el) { el.innerHTML = t(el.getAttribute('data-i18n-html')); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-ph]'), function (el) { el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph'))); });
+    Array.prototype.forEach.call(document.querySelectorAll('.card,.chip'), function (b) { if (b._label) b._label(); });
+    Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-lang') === LANG ? 'true' : 'false');
+    });
+    $('send-btn').textContent = s(sent ? 'sent' : 'send') + (sent && OWNER ? (LANG === 'en' ? ' (test)' : ' (тест)') : '');
+    if ($('owner-badge')) $('owner-badge').textContent = LANG === 'en' ? 'Owner mode: nothing is sent' : 'Режим власника: нічого не надсилається';
+    if (statusKey) setStatus(statusKey, statusKind);
+    renderFooter();
+    render();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function (b) {
+    b.addEventListener('click', function () {
+      LANG = b.getAttribute('data-lang');
+      try { localStorage.setItem('aboutiami-lang', LANG); } catch (e) {}
+      applyLang();
+    });
+  });
+
   /* ---------- Відправка ---------- */
-  function setStatus(text, kind) {
-    var s = $('status');
-    s.textContent = text;
-    s.className = 'status' + (kind ? ' ' + kind : '');
+  function setStatus(k, kind) {
+    statusKey = k; statusKind = kind || '';
+    var el = $('status');
+    el.textContent = k ? s(k) : '';
+    el.className = 'status' + (kind ? ' ' + kind : '');
   }
   function check(id, errId) {
     var el = $(id), ok = el.value.trim().length > 1;
@@ -532,15 +706,17 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
     var v = $('contact').value.trim();
     return /^[+\d][\d\s()\-]*$/.test(v) ? "'" + v : v;
   }
+  /* у таблицю йдуть українські значення за будь-якої мови; мова — окремим полем */
   function payload() {
     var f = framingObj();
     return {
       group: group,
+      lang: LANG,
       name: $('name').value.trim(),
       contact: contactValue(),
       interview: $('interview').checked ? 'Так' : 'Ні',
       comment: $('comment').value.trim(),
-      framing: f ? f.label : '',
+      framing: f ? f.label.uk : '',
       start: st.start || '',
       values: st.values.join(', '),
       work: st.work || '',
@@ -570,17 +746,17 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
     if (OWNER) {
       sent = true;
       $('send-btn').disabled = true;
-      $('send-btn').textContent = 'Надіслано (тест)';
-      setStatus('Режим власника: відповідь нікуди не надіслано.', 'ok');
+      $('send-btn').textContent = s('sent') + (LANG === 'en' ? ' (test)' : ' (тест)');
+      setStatus('owner', 'ok');
       return;
     }
     if (!CONFIG.ENDPOINT) {
-      setStatus('Запис відповідей ще не підключено: цю відповідь не збережено.', 'bad');
+      setStatus('noEndpoint', 'bad');
       return;
     }
     sending = true;
     $('send-btn').disabled = true;
-    setStatus('Надсилаємо…', '');
+    setStatus('sending', '');
     fetch(CONFIG.ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -588,12 +764,12 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
     }).then(function (r) { return r.json(); }).then(function (res) {
       if (!res || !res.ok) throw new Error('not ok');
       sent = true;
-      $('send-btn').textContent = 'Надіслано';
-      setStatus('Дякуємо! Твій варіант у нас.', 'ok');
+      $('send-btn').textContent = s('sent');
+      setStatus('ok', 'ok');
     }).catch(function () {
       sending = false;
       $('send-btn').disabled = false;
-      setStatus('Не вдалося надіслати. Перевір інтернет і натисни ще раз.', 'bad');
+      setStatus('fail', 'bad');
     });
   });
   $('have-text').addEventListener('input', render);
@@ -604,37 +780,38 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
   });
 
   /* ---------- Передоплата і підвал ---------- */
-  (function () {
-    /* Голос гривнею: гроші не списуються, записуємо лише суму, яку людина була готова заплатити */
-    $('pay-open').addEventListener('click', function () {
-      $('pay-start').hidden = true;
-      $('pay-form').hidden = false;
-      $('pay-amount').focus();
-    });
-    $('pay-amount').addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') { e.preventDefault(); $('pay-go').click(); }
-    });
-    $('pay-go').addEventListener('click', function () {
-      var raw = $('pay-amount').value.replace(/[\s,.]/g, '');
-      var ok = /^\d+$/.test(raw) && parseInt(raw, 10) > 0;
-      $('pay-amount').setAttribute('aria-invalid', ok ? 'false' : 'true');
-      $('pay-err').hidden = ok;
-      if (!ok) { $('pay-amount').focus(); return; }
-      vote = parseInt(raw, 10);
-      $('pay-form').hidden = true;
-      $('pay-thanks').hidden = false;
-      if (CONFIG.ENDPOINT && !OWNER) {
-        fetch(CONFIG.ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ type: 'vote', amount: vote, group: group,
-            name: $('name').value.trim(), contact: contactValue(), website: $('website').value })
-        }).catch(function () {});
-      }
-    });
+  /* Голос гривнею: гроші не списуються, записуємо лише суму, яку людина була готова заплатити */
+  $('pay-open').addEventListener('click', function () {
+    $('pay-start').hidden = true;
+    $('pay-form').hidden = false;
+    $('pay-amount').focus();
+  });
+  $('pay-amount').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); $('pay-go').click(); }
+  });
+  $('pay-go').addEventListener('click', function () {
+    var raw = $('pay-amount').value.replace(/[\s,.]/g, '');
+    var ok = /^\d+$/.test(raw) && parseInt(raw, 10) > 0;
+    $('pay-amount').setAttribute('aria-invalid', ok ? 'false' : 'true');
+    $('pay-err').hidden = ok;
+    if (!ok) { $('pay-amount').focus(); return; }
+    vote = parseInt(raw, 10);
+    $('pay-form').hidden = true;
+    $('pay-thanks').hidden = false;
+    if (CONFIG.ENDPOINT && !OWNER) {
+      fetch(CONFIG.ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ type: 'vote', amount: vote, group: group, lang: LANG,
+          name: $('name').value.trim(), contact: contactValue(), website: $('website').value })
+      }).catch(function () {});
+    }
+  });
+  function renderFooter() {
     $('legal-name').textContent = CONFIG.LEGAL_NAME ? ' · ' + CONFIG.LEGAL_NAME : '';
-    var links = [['Угода користувача', CONFIG.TERMS_URL], ['Політика конфіденційності', CONFIG.PRIVACY_URL], ['Повернення коштів', CONFIG.REFUND_URL]];
+    var links = [[s('terms'), CONFIG.TERMS_URL], [s('privacy'), CONFIG.PRIVACY_URL], [s('refund'), CONFIG.REFUND_URL]];
     var host = $('legal-links');
+    host.textContent = '';
     links.forEach(function (l) {
       if (!l[1]) return;   // документа ще немає — не показуємо
       var el = document.createElement('a'); el.href = l[1]; el.target = '_blank'; el.rel = 'noopener';
@@ -642,11 +819,11 @@ footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
       host.appendChild(el);
     });
     var c = document.createElement('span');
-    c.textContent = 'Контакти: ' + CONFIG.CONTACT;
+    c.textContent = s('contacts') + CONFIG.PHONE;
     host.appendChild(c);
-  })();
+  }
 
-  render();
+  applyLang();
 })();
 </script>
 </body>
